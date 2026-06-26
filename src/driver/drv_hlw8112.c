@@ -94,8 +94,8 @@ static int32_t HLW8112_24BitTo32Bit(uint32_t value) {
 #if HLW8112_USE_SOFT_SPI
 
 static int spi_sck_pin = 14;
-static int spi_miso_pin = 16;
-static int spi_mosi_pin = 17;
+static int spi_miso_pin = 17;
+static int spi_mosi_pin = 16;
 
 static void hlw_soft_spi_send(uint8_t data) {
 	for (int i = 0; i < 8; i++) {
