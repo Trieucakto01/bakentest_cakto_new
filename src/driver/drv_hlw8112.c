@@ -276,6 +276,7 @@ static uint8_t calcChecksum(uint8_t *data, uint8_t size) {
 int HLW8112_WriteRegister(uint8_t reg, uint8_t *data, uint8_t size) {
   	uint8_t tx[3] = {0};
 	int result;
+	uint8_t i;
   	if (reg == HLW8112_REG_COMMAND) {
     	tx[0] = reg;
   	} else {
@@ -288,7 +289,6 @@ int HLW8112_WriteRegister(uint8_t reg, uint8_t *data, uint8_t size) {
   	}
 
 	// buffer prepare
-	uint8_t i;
   	for (i = 0; i < size; i++) {
     	tx[1 + i] = data[i];
   	}
@@ -325,18 +325,20 @@ int writeDisable() {
 }
 
 uint8_t HLW8112_WriteRegister16(uint8_t reg, uint16_t value) {
+	uint8_t result;
+	uint16_t readValue;
+	int rresult;
   	HLW8112_SPI_Txn_Begin();
   	writeEnable();
   	
-	uint8_t result = HLW8112_WriteRegisterValue(reg, value);
+	result = HLW8112_WriteRegisterValue(reg, value);
   	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_WriteRegisterValue result %d", result);
   	
 	writeDisable();
   	HLW8112_SPI_Txn_End();
   
 	//TODO verify reg this is big no for clearing regs will need to switch last read reg
-	uint16_t readValue;
-  	int rresult = HLW8112_ReadRegister16(reg, &readValue);
+  	rresult = HLW8112_ReadRegister16(reg, &readValue);
   	if (rresult < 0) {
     	ADDLOG_ERROR(LOG_FEATURE_ENERGYMETER, "Write Verify read result %d", rresult);
 		return -2;
@@ -350,18 +352,20 @@ uint8_t HLW8112_WriteRegister16(uint8_t reg, uint16_t value) {
   	return result;
 }
 uint8_t HLW8112_WriteRegister8(uint8_t reg, uint8_t value) {
+	uint8_t result;
+	uint8_t readValue;
+	int rresult;
   	HLW8112_SPI_Txn_Begin();
   	writeEnable();
   	
-	uint8_t result = HLW8112_WriteRegisterValue8(reg, value);
+	result = HLW8112_WriteRegisterValue8(reg, value);
   	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_WriteRegisterValue8 result %d", result);
   	
 	writeDisable();
   	HLW8112_SPI_Txn_End();
   
 	//TODO verify reg this is big no for clearing regs will need to switch last read reg
-	uint8_t readValue;
-  	int rresult = HLW8112_ReadRegister8(reg, &readValue);
+  	rresult = HLW8112_ReadRegister8(reg, &readValue);
   	if (rresult < 0) {
     	ADDLOG_ERROR(LOG_FEATURE_ENERGYMETER, "Write Verify read result %d", rresult);
 		return -2;
@@ -432,11 +436,12 @@ void HLW8112_Set_EnergyStat(HLW8112_Channel_t channel, float import, float expor
 #pragma region commands
 
 static commandResult_t HLW8112_SetClock(const void *context, const char *cmd, const char *args, int cmdFlags) {
+	uint32_t value;
 	Tokenizer_TokenizeString(args, TOKENIZER_ALLOW_QUOTES);
 	if (Tokenizer_CheckArgsCountAndPrintWarning(cmd, 1)) {
 		return CMD_RES_NOT_ENOUGH_ARGUMENTS;
 	}
-	uint32_t value = Tokenizer_GetArgInteger(0);
+	value = Tokenizer_GetArgInteger(0);
 	device.CLKI = value;
 	//CHANNEL_Set(HLW8112_Channel_Clk, value, 0 );
 	CFG_SetPowerMeasurementCalibrationInteger(CFG_OBK_CLK,value);
@@ -474,11 +479,12 @@ static commandResult_t HLW8112_SetEnergyStat(const void *context, const char *cm
 }
 
 static commandResult_t HLW8112_ClearEnergy(const void *context, const char *cmd, const char *args, int cmdFlags) {
+	char* channel;
 	Tokenizer_TokenizeString(args, TOKENIZER_ALLOW_QUOTES);
 	if (Tokenizer_CheckArgsCountAndPrintWarning(cmd, 1)) {
 		return CMD_RES_NOT_ENOUGH_ARGUMENTS;
 	}
-	char* channel = Tokenizer_GetArg(0);
+	channel = Tokenizer_GetArg(0);
 	if (!strcmp("channel_a" , channel)) {
 		HLW8112_Set_EnergyStat(HLW8112_CHANNEL_A,0,0);
 	} else if (!strcmp("channel_b" , channel)){
@@ -513,21 +519,20 @@ static commandResult_t HLW8112_write_reg(const void *context, const char *cmd, c
   return CMD_RES_OK;
 }
 static commandResult_t HLW8112_read_reg(const void *context, const char *cmd, const char *args, int cmdFlags) {
-
+  	int reg, width, result;
+  	uint32_t val;
   	Tokenizer_TokenizeString(args, TOKENIZER_ALLOW_QUOTES);
   	if (Tokenizer_CheckArgsCountAndPrintWarning(cmd, 2)) {
     	return CMD_RES_NOT_ENOUGH_ARGUMENTS;
   	}
-  	int reg = Tokenizer_GetArgInteger(0);
+  	reg = Tokenizer_GetArgInteger(0);
   	if (reg < 0 || reg > 255) {
     	return CMD_RES_BAD_ARGUMENT;
   	}
-  	int width = Tokenizer_GetArgInteger(1);
-  	if (width > 32) {
+  	width = Tokenizer_GetArgInteger(1);
+  	if (width != 8 && width != 16 && width != 24 && width != 32) {
     	return CMD_RES_BAD_ARGUMENT;
   	}
-  	uint32_t val;
-  	int result;
   	if (width == 8) {
     	result = HLW8112_ReadRegister8((uint8_t)reg, (uint8_t *)&val);
   	}
@@ -799,13 +804,14 @@ int HLW8112_SetMainChannel(HLW8112_Channel_t channel) {
 
 
 int HLW8112_InitReg() {
+	int cmdResult;
+	uint16_t PGA = HLW8112_PGA_16;
+  	uint16_t PGB = HLW8112_PGA_16;
+  	uint16_t PGU = HLW8112_PGA_1;	
 
 	//HLW8112_SPI_WriteControl(HLW8112_COMMAND_RESET);
 
   	// pga values to config ?? 
-	uint16_t PGA = HLW8112_PGA_16;
-  	uint16_t PGB = HLW8112_PGA_16;
-  	uint16_t PGU = HLW8112_PGA_1;	
 	
 	#pragma region init registers
 	{
@@ -865,12 +871,11 @@ int HLW8112_InitReg() {
 	device.ScaleFactor.a.p = 1.0;
 	device.ScaleFactor.a.e = 1.0;
 	device.ScaleFactor.a.ap = 1.0;
+	device.ScaleFactor.b.u = 1.0;
 	device.ScaleFactor.b.i = 1.0;
 	device.ScaleFactor.b.p = 1.0;
 	device.ScaleFactor.b.e = 1.0;
 	device.ScaleFactor.b.ap = 1.0;
-
-  	int cmdResult;
 
   	//TODO: to config
   	cmdResult = HLW8112_SetMainChannel(HLW8112_CHANNEL_A);
