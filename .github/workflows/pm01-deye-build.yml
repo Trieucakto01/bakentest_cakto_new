@@ -1,0 +1,48 @@
+name: Build PM01 Deye BK7238 HLW8112
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+    paths:
+      - '.github/workflows/pm01-deye-build.yml'
+      - 'Makefile'
+      - 'platforms/**'
+      - 'src/**'
+      - 'include/**'
+
+env:
+  APP_VERSION: pm01_deye_hlw8112
+  TARGET_PLATFORM: OpenBK7238
+  TARGET_VARIANT: hlw8112
+
+jobs:
+  build:
+    name: Build BK7238 QIO firmware
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget python3 python3-pip python-is-python3 libc6-i386 lib32stdc++6 lib32z1
+      - name: Build firmware
+        run: |
+          make APP_VERSION=${APP_VERSION} APP_NAME=${TARGET_PLATFORM} VARIANT=${TARGET_VARIANT} ${TARGET_PLATFORM}
+      - name: Show build output
+        run: |
+          find output/${APP_VERSION} -maxdepth 1 -type f -printf '%p %k KB\n' | sort
+      - name: Upload firmware artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pm01-a002-deye-bk7238-hlw8112
+          path: |
+            output/pm01_deye_hlw8112/OpenBK7238_QIO_pm01_deye_hlw8112.bin
+            output/pm01_deye_hlw8112/OpenBK7238_UA_pm01_deye_hlw8112.bin
+            output/pm01_deye_hlw8112/OpenBK7238_UG_pm01_deye_hlw8112.bin
+            output/pm01_deye_hlw8112/OpenBK7238_pm01_deye_hlw8112.rbl
+          if-no-files-found: error
