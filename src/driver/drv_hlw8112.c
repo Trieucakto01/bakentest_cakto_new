@@ -61,7 +61,8 @@ int GPIO_HLW_SCSN = 9;
 #if HLW8112_SPI_RAWACCESS
 
 void HLW8112_Print_Array(uint8_t *data, int size) {
-	for (int i = 0; i <= size; i++) {
+	int i;
+	for (i = 0; i <= size; i++) {
 		ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_Print_Array i = %d : v = %02hhX", i, data[i]);
 	}
 }
@@ -206,9 +207,10 @@ int HLW8112_SPI_Transact(uint8_t *txBuffer, uint32_t txSize, uint8_t *rxBuffer, 
 int HLW8112_ReadRegister(uint8_t reg, uint8_t size, uint32_t *valueResult) {
   	uint8_t tx[1] = {0xFF};
   	uint8_t rx[5] = {0};
+	int result;
   	tx[0] = reg & 0x7F;
   	
-	int result = HLW8112_SPI_Transact(tx, 1, rx, 5);
+	result = HLW8112_SPI_Transact(tx, 1, rx, 5);
   	if (result < 0) {
     	ADDLOG_ERROR(LOG_FEATURE_ENERGYMETER, "HLW8112_ReadRegister non zero result %d", result);
     	return result;
@@ -261,9 +263,19 @@ int HLW8112_ReadRegister32(uint8_t reg, uint32_t *valueResult) {
 
 #pragma region write
 
+static uint8_t calcChecksum(uint8_t *data, uint8_t size) {
+  	uint32_t checksum = 0;
+	uint8_t i;
+	for (i = 0; i < size; i++) {
+    	checksum += data[i];
+  	}
+	return (uint8_t)(~checksum & 0xFF);
+}
+
 // needs to take care of spi txn by callee
 int HLW8112_WriteRegister(uint8_t reg, uint8_t *data, uint8_t size) {
   	uint8_t tx[3] = {0};
+	int result;
   	if (reg == HLW8112_REG_COMMAND) {
     	tx[0] = reg;
   	} else {
@@ -276,11 +288,12 @@ int HLW8112_WriteRegister(uint8_t reg, uint8_t *data, uint8_t size) {
   	}
 
 	// buffer prepare
-  	for (uint8_t i = 0; i < size; i++) {
+	uint8_t i;
+  	for (i = 0; i < size; i++) {
     	tx[1 + i] = data[i];
   	}
   	
-  	int result = HLW8112_SPI_WriteBytes(tx, size + 1);
+  	result = HLW8112_SPI_WriteBytes(tx, size + 1);
   	//TODO: verify written bytes register
   	return result;
 }
@@ -476,23 +489,24 @@ static commandResult_t HLW8112_ClearEnergy(const void *context, const char *cmd,
 
 #if HLW8112_SPI_RAWACCESS
 static commandResult_t HLW8112_write_reg(const void *context, const char *cmd, const char *args, int cmdFlags) {
-
+  	int reg, val, result, cr;
+	
   	Tokenizer_TokenizeString(args, TOKENIZER_ALLOW_QUOTES);
   	if (Tokenizer_CheckArgsCountAndPrintWarning(cmd, 2)) {
     	return CMD_RES_NOT_ENOUGH_ARGUMENTS;
   	}
-  	int reg = Tokenizer_GetArgInteger(0);
+  	reg = Tokenizer_GetArgInteger(0);
   	if (reg < 0 || reg > 255) {
     	return CMD_RES_BAD_ARGUMENT;
   	}
-  	int val = Tokenizer_GetArgInteger(1);
+  	val = Tokenizer_GetArgInteger(1);
   	if (val > 65535) {
     	return CMD_RES_BAD_ARGUMENT;
   	}
-  	int result = HLW8112_WriteRegister16((uint8_t)reg, (uint16_t)val);
+  	result = HLW8112_WriteRegister16((uint8_t)reg, (uint16_t)val);
   	ADDLOG_INFO(LOG_FEATURE_CMD, "HLW8112_write_reg result %d", result);
 
-  	int cr = HLW8112_CheckCoeffs();
+  	cr = HLW8112_CheckCoeffs();
   	if (cr > 0) {
     	HLW8112_UpdateCoeff();
   	}
@@ -893,13 +907,17 @@ void HLW8112_Init(void) {
 }
 
 void HLW8112SPI_Init(void) {
+	int result;
+#if !HLW8112_USE_SOFT_SPI
+	spi_config_t cfg;
+#endif
+
 	HLW8112_Init();
 #if HLW8112_USE_SOFT_SPI
 	hlw_soft_spi_init();
 #else
   	SPI_DriverInit();
 
-	spi_config_t cfg;
 	cfg.role = SPI_ROLE_MASTER;
 	cfg.bit_width = SPI_BIT_WIDTH_8BITS;
 	cfg.polarity = SPI_POLARITY_HIGH;
@@ -910,7 +928,7 @@ void HLW8112SPI_Init(void) {
 	OBK_SPI_Init(&cfg);
 #endif
 
-  	int result = HLW8112_InitReg();
+  	result = HLW8112_InitReg();
   	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_InitReg result %i", result);
  
 }
