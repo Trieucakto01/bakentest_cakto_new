@@ -147,32 +147,35 @@ void HLW8112_SPI_Txn_End(void) {
 }
 
 int HLW8112_SPI_ReadBytes(uint8_t *buffer, uint32_t size) {
+	int Result;
 #if HLW8112_USE_SOFT_SPI
 	for (uint32_t i = 0; i < size; i++) {
 		buffer[i] = hlw_soft_spi_read();
 	}
-	int Result = 0;
+	Result = 0;
 #else
-	int Result = SPI_ReadBytes(buffer, size);
+	Result = SPI_ReadBytes(buffer, size);
 #endif
 	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_SPI_Read result %x", Result);
 	return Result;
 }
 
 int HLW8112_SPI_WriteBytes(uint8_t *data, uint32_t size) {
+	int Result;
 #if HLW8112_USE_SOFT_SPI
 	for (uint32_t i = 0; i < size; i++) {
 		hlw_soft_spi_send(data[i]);
 	}
-	int Result = 0;
+	Result = 0;
 #else
-  	int Result = SPI_WriteBytes(data, size);
+  	Result = SPI_WriteBytes(data, size);
 #endif
   	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_SPI_Write result %x", Result);
   	return Result;
 }
 
 int HLW8112_SPI_Transact(uint8_t *txBuffer, uint32_t txSize, uint8_t *rxBuffer, uint32_t rxSize) {
+	int Result;
   	HLW8112_SPI_Txn_Begin();
 #if HLW8112_USE_SOFT_SPI
 	for (uint32_t i = 0; i < txSize; i++) {
@@ -181,9 +184,9 @@ int HLW8112_SPI_Transact(uint8_t *txBuffer, uint32_t txSize, uint8_t *rxBuffer, 
 	for (uint32_t i = 0; i < rxSize; i++) {
 		rxBuffer[i] = hlw_soft_spi_read();
 	}
-	int Result = 0;
+	Result = 0;
 #else
-  	int Result = SPI_Transmit(txBuffer, txSize, rxBuffer, rxSize);
+  	Result = SPI_Transmit(txBuffer, txSize, rxBuffer, rxSize);
 #endif
   	HLW8112_SPI_Txn_End();
   	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_SPI_Transact result %d", Result);

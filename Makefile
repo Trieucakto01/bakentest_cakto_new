@@ -85,9 +85,6 @@ ifneq ("$(wildcard libraries/berry/generate)","")
 	@echo "[Prebuild berry] resources already generated, checking for differences"
 endif
 
-berry: berry_init
-	@[ "$(shell diff -rq libraries/berry/generate libraries/berry/temp)" ] && (echo "[Prebuild berry] regenerate resources" && cp -r libraries/berry/temp/* libraries/berry/generate) || echo "[Prebuild berry] resources are not different"
-
 # Create symlink for App into SDK folder structure
 sdk/OpenBK7231T/apps/$(APP_NAME):
 	@echo Create symlink for $(APP_NAME) into sdk folder
