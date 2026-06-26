@@ -75,7 +75,8 @@ endif
 
 .PHONY: berry_init berry
 berry_init:
-	git submodule update --init --recursive libraries/berry
+	rm -rf libraries/berry
+	git clone --depth=1 https://github.com/berry-lang/berry.git libraries/berry
 	@mkdir -p libraries/berry/generate
 	@mkdir -p libraries/berry/temp
 	@./libraries/berry/tools/coc/coc -o libraries/berry/temp libraries/berry/src src/berry/modules -c include/berry_conf.h
