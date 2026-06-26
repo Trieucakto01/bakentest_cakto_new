@@ -300,9 +300,10 @@ int HLW8112_WriteRegister(uint8_t reg, uint8_t *data, uint8_t size) {
 
 uint8_t HLW8112_WriteRegisterValue(uint8_t reg, uint16_t value) {
   	uint8_t data[2] = {0};
+	uint8_t result;
   	data[0] = (value >> 8) & 0xFF;
   	data[1] = value & 0xFF;
-  	uint8_t result = HLW8112_WriteRegister(reg, data, 2);
+  	result = HLW8112_WriteRegister(reg, data, 2);
   	return result;
 }
 
@@ -760,6 +761,8 @@ int HLW8112_UpdateCoeff() {
 }
 
 int HLW8112_CheckCoeffs() {
+	uint16_t regValue;
+  	int cmdResult;
   	uint16_t checksum = 0xFFFF 
 		+ device.DeviceRegisterCoeff.RmsIAC 
 		+ device.DeviceRegisterCoeff.RmsIBC 
@@ -771,8 +774,6 @@ int HLW8112_CheckCoeffs() {
 		+ device.DeviceRegisterCoeff.EnergyBC;
   	checksum = ~checksum;
   
-	uint16_t regValue;
-  	int cmdResult;
   	cmdResult = HLW8112_ReadRegister16(HLW8112_REG_COF_CHECKSUM, &regValue);
   	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_CheckCoeffs HLW8112_REG_EMUStatus_Chksum %i", cmdResult);
   	if (cmdResult < 0) {
@@ -816,6 +817,8 @@ int HLW8112_InitReg() {
 	#pragma region init registers
 	{
     	uint16_t syscon = 0;
+		uint16_t emucon = 0;
+		uint16_t emucon2 = 0;
     	syscon |= (1 << HLW8112_REG_SYSCON_ADC3ON);
     	syscon |= (1 << HLW8112_REG_SYSCON_ADC2ON);
     	syscon |= (1 << HLW8112_REG_SYSCON_ADC1ON);
@@ -827,7 +830,6 @@ int HLW8112_InitReg() {
     	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_InitReg syscon %04X", syscon);
     	HLW8112_WriteRegister16(HLW8112_REG_SYSCON, syscon);
 
-    	uint16_t emucon = 0;
     	emucon |= (1 << HLW8112_REG_EMUCON_PBRUN);
     	emucon |= (1 << HLW8112_REG_EMUCON_PARUN);
     	emucon |= (1 << HLW8112_REG_EMUCON_COMP_OFF);
@@ -837,7 +839,6 @@ int HLW8112_InitReg() {
     	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_InitReg emucon %04X",  emucon);
     	HLW8112_WriteRegister16(HLW8112_REG_EMUCON, emucon);
 
-    	uint16_t emucon2 = 0;
 
     	emucon2 |= (0 << HLW8112_REG_EMUCON2_EPB_CB);
     	emucon2 |= (0 << HLW8112_REG_EMUCON2_EPB_CA);
