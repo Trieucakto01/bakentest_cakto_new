@@ -1514,6 +1514,22 @@ void Main_Init_Before_Delay()
 	}
 	CFG_InitAndLoad();
 
+#if (OBK_VARIANT == OBK_VARIANT_HLW8112)
+	if(PIN_GetPinRoleForPinIndex(9) == IOR_None && PIN_GetPinRoleForPinIndex(24) == IOR_None && PIN_GetPinRoleForPinIndex(26) == IOR_None) {
+		PIN_SetPinRoleForPinIndex(9, IOR_HLW8112_SCSN);
+		PIN_SetPinRoleForPinIndex(24, IOR_LED_WIFI_n);
+		PIN_SetPinRoleForPinIndex(26, IOR_Button);
+		if(strlen(CFG_GetShortStartupCommand()) == 0) {
+			CFG_SetShortStartupCommand("startDriver DeyeSolarman\nDeye_StartAuto");
+		}
+		CFG_SetDeviceName("AgriHT PM01 Zero Export");
+		CFG_SetShortDeviceName("PM01-BK7238");
+		CFG_MarkAsDirty();
+		CFG_Save_IfThereArePendingChanges();
+		ADDLOGF_INFO("Applied default config for PM01 Deye");
+	}
+#endif
+
 #if ENABLE_LITTLEFS
 	LFSAddCmds();
 #endif
