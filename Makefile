@@ -77,6 +77,7 @@ endif
 berry_init:
 	rm -rf libraries/berry
 	git clone --depth=1 https://github.com/berry-lang/berry.git libraries/berry
+	python3 -c "with open('libraries/berry/tools/coc/coc', 'r') as f: content = f.read(); content = content.replace('text = f.read()', 'print(filename)\n            text = f.read()'); open('libraries/berry/tools/coc/coc', 'w').write(content)"
 	@mkdir -p libraries/berry/generate
 	@mkdir -p libraries/berry/temp
 	@./libraries/berry/tools/coc/coc -o libraries/berry/temp libraries/berry/src src/berry/modules -c include/berry_conf.h

@@ -85,6 +85,59 @@ static int32_t HLW8112_24BitTo32Bit(uint32_t value) {
 
 #pragma region HLW8112 register lowlevel ops
 
+#if PLATFORM_BEKEN_NEW
+#define HLW8112_USE_SOFT_SPI 1
+#else
+#define HLW8112_USE_SOFT_SPI 0
+#endif
+
+#if HLW8112_USE_SOFT_SPI
+
+static int spi_sck_pin = 14;
+static int spi_miso_pin = 16;
+static int spi_mosi_pin = 17;
+
+static void hlw_soft_spi_send(uint8_t data) {
+	for (int i = 0; i < 8; i++) {
+		// MSB first
+		HAL_PIN_SetOutputValue(spi_mosi_pin, (data & 0x80) ? 1 : 0);
+		data <<= 1;
+		
+		// SCK Falling edge (Sample data)
+		HAL_PIN_SetOutputValue(spi_sck_pin, 0);
+		
+		// SCK Rising edge (Shift data)
+		HAL_PIN_SetOutputValue(spi_sck_pin, 1);
+	}
+}
+
+static uint8_t hlw_soft_spi_read() {
+	uint8_t data = 0;
+	for (int i = 0; i < 8; i++) {
+		data <<= 1;
+		// SCK Falling edge
+		HAL_PIN_SetOutputValue(spi_sck_pin, 0);
+		
+		// Sample data
+		if (HAL_PIN_ReadDigitalInput(spi_miso_pin)) {
+			data |= 1;
+		}
+		
+		// SCK Rising edge
+		HAL_PIN_SetOutputValue(spi_sck_pin, 1);
+	}
+	return data;
+}
+
+static void hlw_soft_spi_init() {
+	HAL_PIN_Setup_Output(spi_sck_pin);
+	HAL_PIN_Setup_Input(spi_miso_pin);
+	HAL_PIN_Setup_Output(spi_mosi_pin);
+	HAL_PIN_SetOutputValue(spi_sck_pin, 1); // idle high
+}
+
+#endif
+
 void HLW8112_SPI_Txn_Begin(void) {
 	HAL_PIN_SetOutputValue(GPIO_HLW_SCSN, 0); 
 }
@@ -94,20 +147,44 @@ void HLW8112_SPI_Txn_End(void) {
 }
 
 int HLW8112_SPI_ReadBytes(uint8_t *buffer, uint32_t size) {
+#if HLW8112_USE_SOFT_SPI
+	for (uint32_t i = 0; i < size; i++) {
+		buffer[i] = hlw_soft_spi_read();
+	}
+	int Result = 0;
+#else
 	int Result = SPI_ReadBytes(buffer, size);
+#endif
 	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_SPI_Read result %x", Result);
 	return Result;
 }
 
 int HLW8112_SPI_WriteBytes(uint8_t *data, uint32_t size) {
+#if HLW8112_USE_SOFT_SPI
+	for (uint32_t i = 0; i < size; i++) {
+		hlw_soft_spi_send(data[i]);
+	}
+	int Result = 0;
+#else
   	int Result = SPI_WriteBytes(data, size);
+#endif
   	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_SPI_Write result %x", Result);
   	return Result;
 }
 
 int HLW8112_SPI_Transact(uint8_t *txBuffer, uint32_t txSize, uint8_t *rxBuffer, uint32_t rxSize) {
   	HLW8112_SPI_Txn_Begin();
+#if HLW8112_USE_SOFT_SPI
+	for (uint32_t i = 0; i < txSize; i++) {
+		hlw_soft_spi_send(txBuffer[i]);
+	}
+	for (uint32_t i = 0; i < rxSize; i++) {
+		rxBuffer[i] = hlw_soft_spi_read();
+	}
+	int Result = 0;
+#else
   	int Result = SPI_Transmit(txBuffer, txSize, rxBuffer, rxSize);
+#endif
   	HLW8112_SPI_Txn_End();
   	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_SPI_Transact result %d", Result);
   	return Result;
@@ -807,6 +884,9 @@ void HLW8112_Init(void) {
 
 void HLW8112SPI_Init(void) {
 	HLW8112_Init();
+#if HLW8112_USE_SOFT_SPI
+	hlw_soft_spi_init();
+#else
   	SPI_DriverInit();
 
 	spi_config_t cfg;
@@ -818,6 +898,7 @@ void HLW8112SPI_Init(void) {
 	cfg.baud_rate = HLW8112_SPI_BAUD_RATE;
 	cfg.bit_order = SPI_MSB_FIRST;
 	OBK_SPI_Init(&cfg);
+#endif
 
   	int result = HLW8112_InitReg();
   	ADDLOG_DEBUG(LOG_FEATURE_ENERGYMETER, "HLW8112_InitReg result %i", result);
