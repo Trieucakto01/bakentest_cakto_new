@@ -168,7 +168,7 @@ void CFG_SetDefaultConfig() {
 	g_cfg.pins.roles[6] = IOR_Button;
 	g_cfg.pins.channels[6] = 0;
 	
-	g_cfg.pins.roles[8] = IOR_WiFi_LED_n;
+	g_cfg.pins.roles[8] = IOR_LED_WIFI_n;
 	
 	g_cfg.pins.roles[14] = IOR_HLW8112_SCK;
 	g_cfg.pins.roles[16] = IOR_HLW8112_MOSI;
