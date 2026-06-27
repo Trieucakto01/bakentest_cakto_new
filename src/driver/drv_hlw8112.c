@@ -101,15 +101,18 @@ static int spi_mosi_pin = 16;
 static void hlw_soft_spi_send(uint8_t data) {
 	int i;
 	for (i = 0; i < 8; i++) {
-		// MSB first
+		// Output data
 		HAL_PIN_SetOutputValue(spi_mosi_pin, (data & 0x80) ? 1 : 0);
 		data <<= 1;
 		
-		// SCK Falling edge (Sample data)
-		HAL_PIN_SetOutputValue(spi_sck_pin, 0);
-		
-		// SCK Rising edge (Shift data)
+		// SCK Rising edge
 		HAL_PIN_SetOutputValue(spi_sck_pin, 1);
+		
+		// Small delay if needed
+		// rtos_delay_milliseconds(0); 
+
+		// SCK Falling edge (Slave samples here)
+		HAL_PIN_SetOutputValue(spi_sck_pin, 0);
 	}
 }
 
@@ -118,16 +121,20 @@ static uint8_t hlw_soft_spi_read() {
 	int i;
 	for (i = 0; i < 8; i++) {
 		data <<= 1;
-		// SCK Falling edge
-		HAL_PIN_SetOutputValue(spi_sck_pin, 0);
 		
-		// Sample data
+		// SCK Rising edge (Slave outputs data here)
+		HAL_PIN_SetOutputValue(spi_sck_pin, 1);
+		
+		// Small delay if needed
+		// rtos_delay_milliseconds(0);
+
+		// Sample data while SCK is HIGH (Stable)
 		if (HAL_PIN_ReadDigitalInput(spi_miso_pin)) {
 			data |= 1;
 		}
-		
-		// SCK Rising edge
-		HAL_PIN_SetOutputValue(spi_sck_pin, 1);
+
+		// SCK Falling edge
+		HAL_PIN_SetOutputValue(spi_sck_pin, 0);
 	}
 	return data;
 }
