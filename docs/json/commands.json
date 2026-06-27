@@ -153,6 +153,15 @@
     "examples": ""
   },
   {
+    "name": "AgriHTActivate",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_Activate",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
     "name": "AHT2X_Calibrate",
     "args": "[DeltaTemp][DeltaHumidity]",
     "descr": "Calibrate the AHT2X Sensor as Tolerance is +/-2 degrees C.",
@@ -738,6 +747,249 @@
     "examples": ""
   },
   {
+    "name": "Deye",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_Main",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeIP",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetIP",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeOn",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_EnableFixed",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyePct",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetFixedPercent",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyePeriod",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetPeriodMs",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyePort",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetPort",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeProbe",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_Probe",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeRead40",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_ReadR40",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeReg",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetRegister",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeSave",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_Save",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeSend",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SendFixed",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeSetup",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_Setup",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeSlave",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetSlave",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeSN",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetLoggerSerial",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeStatus",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_Status",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "DeyeVerify40",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_VerifyR40",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_EnableFixed",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_EnableFixed",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_Probe",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_Probe",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_SendFixed",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SendFixed",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_SetFixedPercent",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetFixedPercent",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_SetIP",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetIP",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_SetLoggerSerial",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetLoggerSerial",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_SetPeriodMs",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetPeriodMs",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_SetPort",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetPort",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_SetRegister",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetRegister",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_SetSlave",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_SetSlave",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "Deye_Status",
+    "args": "TODO",
+    "descr": "",
+    "fn": "Deye_CMD_Status",
+    "file": "driver/drv_deye_solarman.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
     "name": "DGR_SendBrightness",
     "args": "[GroupName][Brightness]",
     "descr": "Sends a Brightness message to given Tasmota Device Group with no reliability. Requires no prior setup and can control any group, but won't retransmit.",
@@ -995,6 +1247,96 @@
     "descr": "Sets time in seconds after which boot is marked as valid. This is related to emergency AP mode which is enabled by powering on/off device 5 times quickly.",
     "fn": "CMD_FullBootTime",
     "file": "cmnds/cmd_channels.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "GaitekACFan",
+    "args": "TODO",
+    "descr": "",
+    "fn": "CMD_GaitekACFan",
+    "file": "driver/drv_gaitekAC.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "GaitekACHAMode",
+    "args": "TODO",
+    "descr": "",
+    "fn": "CMD_GaitekACHAMode",
+    "file": "driver/drv_gaitekAC.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "GaitekACMode",
+    "args": "TODO",
+    "descr": "",
+    "fn": "CMD_GaitekACMode",
+    "file": "driver/drv_gaitekAC.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "GaitekACNight",
+    "args": "TODO",
+    "descr": "",
+    "fn": "CMD_GaitekACNight",
+    "file": "driver/drv_gaitekAC.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "GaitekACPower",
+    "args": "TODO",
+    "descr": "",
+    "fn": "CMD_GaitekACPower",
+    "file": "driver/drv_gaitekAC.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "GaitekACPreset",
+    "args": "TODO",
+    "descr": "",
+    "fn": "CMD_GaitekACPreset",
+    "file": "driver/drv_gaitekAC.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "GaitekACPublish",
+    "args": "TODO",
+    "descr": "",
+    "fn": "CMD_GaitekACPublish",
+    "file": "driver/drv_gaitekAC.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "GaitekACRefresh",
+    "args": "TODO",
+    "descr": "",
+    "fn": "CMD_GaitekACRefresh",
+    "file": "driver/drv_gaitekAC.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "GaitekACTemp",
+    "args": "TODO",
+    "descr": "",
+    "fn": "CMD_GaitekACTemp",
+    "file": "driver/drv_gaitekAC.c",
+    "requires": "",
+    "examples": ""
+  },
+  {
+    "name": "GaitekACTimer",
+    "args": "TODO",
+    "descr": "",
+    "fn": "CMD_GaitekACTimer",
+    "file": "driver/drv_gaitekAC.c",
     "requires": "",
     "examples": ""
   },

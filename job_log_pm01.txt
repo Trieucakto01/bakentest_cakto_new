@@ -1,0 +1,898 @@
+﻿2026-06-27T02:29:31.1896874Z Current runner version: '2.335.1'
+2026-06-27T02:29:31.1926097Z ##[group]Runner Image Provisioner
+2026-06-27T02:29:31.1927051Z Hosted Compute Agent
+2026-06-27T02:29:31.1927669Z Version: 20260611.554
+2026-06-27T02:29:31.1928327Z Commit: 5e0782fdc9014723d3be820dd114dd31555c2bd1
+2026-06-27T02:29:31.1929157Z Build Date: 2026-06-11T21:40:46Z
+2026-06-27T02:29:31.1929893Z Worker ID: {ae19d0c7-20f5-430f-8f91-abd1e7bc64bc}
+2026-06-27T02:29:31.1930731Z Azure Region: northcentralus
+2026-06-27T02:29:31.1931384Z ##[endgroup]
+2026-06-27T02:29:31.1932861Z ##[group]Operating System
+2026-06-27T02:29:31.1933620Z Ubuntu
+2026-06-27T02:29:31.1934176Z 22.04.5
+2026-06-27T02:29:31.1934746Z LTS
+2026-06-27T02:29:31.1935601Z ##[endgroup]
+2026-06-27T02:29:31.1936209Z ##[group]Runner Image
+2026-06-27T02:29:31.1936901Z Image: ubuntu-22.04
+2026-06-27T02:29:31.1937510Z Version: 20260623.199.1
+2026-06-27T02:29:31.1938837Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20260623.199/images/ubuntu/Ubuntu2204-Readme.md
+2026-06-27T02:29:31.1940421Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20260623.199
+2026-06-27T02:29:31.1941477Z ##[endgroup]
+2026-06-27T02:29:31.1942736Z ##[group]GITHUB_TOKEN Permissions
+2026-06-27T02:29:31.1944708Z Contents: read
+2026-06-27T02:29:31.1945688Z Metadata: read
+2026-06-27T02:29:31.1946637Z Packages: read
+2026-06-27T02:29:31.1947318Z ##[endgroup]
+2026-06-27T02:29:31.1949416Z Secret source: Actions
+2026-06-27T02:29:31.1950474Z Prepare workflow directory
+2026-06-27T02:29:31.2436154Z Prepare all required actions
+2026-06-27T02:29:31.2473596Z Getting action download info
+2026-06-27T02:29:31.4672479Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-06-27T02:29:31.5699230Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-06-27T02:29:31.8141332Z Complete job name: Build BK7238 QIO firmware
+2026-06-27T02:29:31.8871217Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-06-27T02:29:31.8880110Z ##[group]Run actions/checkout@v4
+2026-06-27T02:29:31.8880860Z with:
+2026-06-27T02:29:31.8881308Z   repository: Trieucakto/baken_test
+2026-06-27T02:29:31.8886183Z   token: ***
+2026-06-27T02:29:31.8886622Z   ssh-strict: true
+2026-06-27T02:29:31.8887066Z   ssh-user: git
+2026-06-27T02:29:31.8887512Z   persist-credentials: true
+2026-06-27T02:29:31.8888008Z   clean: true
+2026-06-27T02:29:31.8888449Z   sparse-checkout-cone-mode: true
+2026-06-27T02:29:31.8888970Z   fetch-depth: 1
+2026-06-27T02:29:31.8889392Z   fetch-tags: false
+2026-06-27T02:29:31.8889835Z   show-progress: true
+2026-06-27T02:29:31.8890289Z   lfs: false
+2026-06-27T02:29:31.8890735Z   submodules: false
+2026-06-27T02:29:31.8891179Z   set-safe-directory: true
+2026-06-27T02:29:31.8891926Z env:
+2026-06-27T02:29:31.8892344Z   APP_VERSION: pm01_deye_hlw8112
+2026-06-27T02:29:31.8892872Z   TARGET_PLATFORM: OpenBK7238
+2026-06-27T02:29:31.8893367Z   TARGET_VARIANT: hlw8112
+2026-06-27T02:29:31.8893829Z ##[endgroup]
+2026-06-27T02:29:31.9891074Z Syncing repository: Trieucakto/baken_test
+2026-06-27T02:29:31.9892862Z ##[group]Getting Git version info
+2026-06-27T02:29:31.9893771Z Working directory is '/home/runner/work/baken_test/baken_test'
+2026-06-27T02:29:31.9894852Z [command]/usr/bin/git version
+2026-06-27T02:29:31.9951639Z git version 2.54.0
+2026-06-27T02:29:32.0012255Z ##[endgroup]
+2026-06-27T02:29:32.0019189Z Temporarily overriding HOME='/home/runner/work/_temp/54b5c164-590b-4abd-a34b-308e0fb5958d' before making global git config changes
+2026-06-27T02:29:32.0021179Z Adding repository directory to the temporary git global config as a safe directory
+2026-06-27T02:29:32.0024250Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/baken_test/baken_test
+2026-06-27T02:29:32.0059135Z Deleting the contents of '/home/runner/work/baken_test/baken_test'
+2026-06-27T02:29:32.0063199Z ##[group]Initializing the repository
+2026-06-27T02:29:32.0068399Z [command]/usr/bin/git init /home/runner/work/baken_test/baken_test
+2026-06-27T02:29:32.0180090Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-06-27T02:29:32.0182388Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-06-27T02:29:32.0183685Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-06-27T02:29:32.0184595Z hint: call:
+2026-06-27T02:29:32.0185139Z hint:
+2026-06-27T02:29:32.0186256Z hint: 	git config --global init.defaultBranch <name>
+2026-06-27T02:29:32.0187710Z hint:
+2026-06-27T02:29:32.0188656Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-06-27T02:29:32.0189805Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-06-27T02:29:32.0190851Z hint:
+2026-06-27T02:29:32.0191914Z hint: 	git branch -m <name>
+2026-06-27T02:29:32.0192750Z hint:
+2026-06-27T02:29:32.0193539Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-06-27T02:29:32.0194691Z Initialized empty Git repository in /home/runner/work/baken_test/baken_test/.git/
+2026-06-27T02:29:32.0197833Z [command]/usr/bin/git remote add origin https://github.com/Trieucakto/baken_test
+2026-06-27T02:29:32.0228947Z ##[endgroup]
+2026-06-27T02:29:32.0229900Z ##[group]Disabling automatic garbage collection
+2026-06-27T02:29:32.0232776Z [command]/usr/bin/git config --local gc.auto 0
+2026-06-27T02:29:32.0261978Z ##[endgroup]
+2026-06-27T02:29:32.0262704Z ##[group]Setting up auth
+2026-06-27T02:29:32.0268608Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-06-27T02:29:32.0300221Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-06-27T02:29:32.0638148Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-06-27T02:29:32.0669862Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-06-27T02:29:32.0903810Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-27T02:29:32.0935907Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-06-27T02:29:32.1169365Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-06-27T02:29:32.1203767Z ##[endgroup]
+2026-06-27T02:29:32.1204600Z ##[group]Fetching the repository
+2026-06-27T02:29:32.1212896Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +421c5857c51ff4fa3d08cdff0909f1e6586ca84d:refs/remotes/origin/main
+2026-06-27T02:29:32.5944452Z From https://github.com/Trieucakto/baken_test
+2026-06-27T02:29:32.5946059Z  * [new ref]         421c5857c51ff4fa3d08cdff0909f1e6586ca84d -> origin/main
+2026-06-27T02:29:32.5972293Z ##[endgroup]
+2026-06-27T02:29:32.5973572Z ##[group]Determining the checkout info
+2026-06-27T02:29:32.5975002Z ##[endgroup]
+2026-06-27T02:29:32.5980733Z [command]/usr/bin/git sparse-checkout disable
+2026-06-27T02:29:32.6025921Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-06-27T02:29:32.6054737Z ##[group]Checking out the ref
+2026-06-27T02:29:32.6059978Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-06-27T02:29:32.6616914Z Switched to a new branch 'main'
+2026-06-27T02:29:32.6620351Z branch 'main' set up to track 'origin/main'.
+2026-06-27T02:29:32.6630322Z ##[endgroup]
+2026-06-27T02:29:32.6678083Z [command]/usr/bin/git log -1 --format=%H
+2026-06-27T02:29:32.6702346Z 421c5857c51ff4fa3d08cdff0909f1e6586ca84d
+2026-06-27T02:29:32.6907924Z ##[group]Run sudo apt-get update
+2026-06-27T02:29:32.6908623Z [36;1msudo apt-get update[0m
+2026-06-27T02:29:32.6909553Z [36;1msudo apt-get install -y wget python3 python3-pip python-is-python3 libc6-i386 lib32stdc++6 lib32z1[0m
+2026-06-27T02:29:32.7322150Z shell: /usr/bin/bash -e {0}
+2026-06-27T02:29:32.7322707Z env:
+2026-06-27T02:29:32.7323153Z   APP_VERSION: pm01_deye_hlw8112
+2026-06-27T02:29:32.7323724Z   TARGET_PLATFORM: OpenBK7238
+2026-06-27T02:29:32.7324245Z   TARGET_VARIANT: hlw8112
+2026-06-27T02:29:32.7324720Z ##[endgroup]
+2026-06-27T02:29:32.9267311Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-06-27T02:29:32.9579367Z Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease
+2026-06-27T02:29:32.9582258Z Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+2026-06-27T02:29:32.9592347Z Get:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease [3632 B]
+2026-06-27T02:29:32.9657465Z Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+2026-06-27T02:29:32.9717270Z Get:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+2026-06-27T02:29:32.9741752Z Get:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+2026-06-27T02:29:33.0156486Z Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [1825 B]
+2026-06-27T02:29:33.1996839Z Get:9 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main amd64 Packages [412 kB]
+2026-06-27T02:29:33.2189462Z Get:10 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main arm64 Packages [217 kB]
+2026-06-27T02:29:33.2231034Z Get:11 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main armhf Packages [21.9 kB]
+2026-06-27T02:29:33.2787207Z Get:12 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3594 kB]
+2026-06-27T02:29:33.2965705Z Get:13 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [538 kB]
+2026-06-27T02:29:33.3004861Z Get:14 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 c-n-f Metadata [20.0 kB]
+2026-06-27T02:29:33.3025793Z Get:15 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [6144 kB]
+2026-06-27T02:29:33.3374213Z Get:16 http://azure.archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [1171 kB]
+2026-06-27T02:29:33.3458854Z Get:17 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1276 kB]
+2026-06-27T02:29:33.3512890Z Get:18 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [320 kB]
+2026-06-27T02:29:33.3553602Z Get:19 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 c-n-f Metadata [30.7 kB]
+2026-06-27T02:29:33.4805124Z Get:20 http://azure.archive.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3324 kB]
+2026-06-27T02:29:33.4980857Z Get:21 http://azure.archive.ubuntu.com/ubuntu jammy-security/main Translation-en [468 kB]
+2026-06-27T02:29:33.5424818Z Get:22 http://azure.archive.ubuntu.com/ubuntu jammy-security/main amd64 c-n-f Metadata [14.5 kB]
+2026-06-27T02:29:33.5436585Z Get:23 http://azure.archive.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [5925 kB]
+2026-06-27T02:29:33.5571232Z Get:28 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1210 B]
+2026-06-27T02:29:33.5729133Z Get:24 http://azure.archive.ubuntu.com/ubuntu jammy-security/restricted Translation-en [1131 kB]
+2026-06-27T02:29:33.5787529Z Get:25 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1041 kB]
+2026-06-27T02:29:33.5859384Z Get:26 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe Translation-en [232 kB]
+2026-06-27T02:29:33.5869294Z Get:27 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe amd64 c-n-f Metadata [23.1 kB]
+2026-06-27T02:29:44.2342262Z Fetched 26.3 MB in 3s (8629 kB/s)
+2026-06-27T02:29:45.1939597Z Reading package lists...
+2026-06-27T02:29:45.2560722Z Reading package lists...
+2026-06-27T02:29:45.4482985Z Building dependency tree...
+2026-06-27T02:29:45.4495039Z Reading state information...
+2026-06-27T02:29:45.6325180Z python-is-python3 is already the newest version (3.9.2-2).
+2026-06-27T02:29:45.6326115Z lib32stdc++6 is already the newest version (12.3.0-1ubuntu1~22.04.3).
+2026-06-27T02:29:45.6326521Z lib32stdc++6 set to manually installed.
+2026-06-27T02:29:45.6326902Z lib32z1 is already the newest version (1:1.2.11.dfsg-2ubuntu9.2).
+2026-06-27T02:29:45.6327351Z libc6-i386 is already the newest version (2.35-0ubuntu3.13).
+2026-06-27T02:29:45.6327720Z libc6-i386 set to manually installed.
+2026-06-27T02:29:45.6328069Z python3 is already the newest version (3.10.6-1~22.04.1).
+2026-06-27T02:29:45.6328475Z wget is already the newest version (1.21.2-2ubuntu1.1).
+2026-06-27T02:29:45.6328909Z python3-pip is already the newest version (22.0.2+dfsg-1ubuntu0.7).
+2026-06-27T02:29:45.6329388Z 0 upgraded, 0 newly installed, 0 to remove and 13 not upgraded.
+2026-06-27T02:29:45.6392535Z ##[group]Run make APP_VERSION=${APP_VERSION} APP_NAME=${TARGET_PLATFORM} VARIANT=${TARGET_VARIANT} ${TARGET_PLATFORM}
+2026-06-27T02:29:45.6393381Z [36;1mmake APP_VERSION=${APP_VERSION} APP_NAME=${TARGET_PLATFORM} VARIANT=${TARGET_VARIANT} ${TARGET_PLATFORM}[0m
+2026-06-27T02:29:45.6461888Z shell: /usr/bin/bash -e {0}
+2026-06-27T02:29:45.6462141Z env:
+2026-06-27T02:29:45.6462336Z   APP_VERSION: pm01_deye_hlw8112
+2026-06-27T02:29:45.6462600Z   TARGET_PLATFORM: OpenBK7238
+2026-06-27T02:29:45.6462845Z   TARGET_VARIANT: hlw8112
+2026-06-27T02:29:45.6463066Z ##[endgroup]
+2026-06-27T02:29:45.6579627Z VARIANT is hlw8112, OBK_VARIANT is 6
+2026-06-27T02:29:45.6650301Z rm -rf sdk/beken_freertos_sdk
+2026-06-27T02:29:45.6660984Z git clone --depth=1 https://github.com/NonPIayerCharacter/beken_freertos_sdk.git sdk/beken_freertos_sdk
+2026-06-27T02:29:45.6673092Z Cloning into 'sdk/beken_freertos_sdk'...
+2026-06-27T02:29:50.8375915Z Updating files:  76% (7629/9983)
+2026-06-27T02:29:50.8442413Z Updating files:  77% (7687/9983)
+2026-06-27T02:29:50.8530042Z Updating files:  78% (7787/9983)
+2026-06-27T02:29:50.8602278Z Updating files:  79% (7887/9983)
+2026-06-27T02:29:50.8664468Z Updating files:  80% (7987/9983)
+2026-06-27T02:29:50.8708950Z Updating files:  81% (8087/9983)
+2026-06-27T02:29:50.8749866Z Updating files:  82% (8187/9983)
+2026-06-27T02:29:50.8789933Z Updating files:  83% (8286/9983)
+2026-06-27T02:29:50.8831159Z Updating files:  84% (8386/9983)
+2026-06-27T02:29:50.8869380Z Updating files:  85% (8486/9983)
+2026-06-27T02:29:50.8924789Z Updating files:  86% (8586/9983)
+2026-06-27T02:29:50.8987358Z Updating files:  87% (8686/9983)
+2026-06-27T02:29:50.9037314Z Updating files:  88% (8786/9983)
+2026-06-27T02:29:50.9100739Z Updating files:  89% (8885/9983)
+2026-06-27T02:29:50.9129869Z Updating files:  90% (8985/9983)
+2026-06-27T02:29:50.9182270Z Updating files:  91% (9085/9983)
+2026-06-27T02:29:50.9232762Z Updating files:  92% (9185/9983)
+2026-06-27T02:29:50.9272251Z Updating files:  93% (9285/9983)
+2026-06-27T02:29:50.9308940Z Updating files:  94% (9385/9983)
+2026-06-27T02:29:50.9347740Z Updating files:  95% (9484/9983)
+2026-06-27T02:29:50.9386015Z Updating files:  96% (9584/9983)
+2026-06-27T02:29:50.9423335Z Updating files:  97% (9684/9983)
+2026-06-27T02:29:50.9474056Z Updating files:  98% (9784/9983)
+2026-06-27T02:29:51.2002472Z Updating files:  99% (9884/9983)
+2026-06-27T02:29:51.2003352Z Updating files: 100% (9983/9983)
+2026-06-27T02:29:51.2003918Z Updating files: 100% (9983/9983), done.
+2026-06-27T02:29:51.2185533Z if [ ! -e sdk/beken_freertos_sdk/toolchain/arm-none-eabi ]; then cd sdk/beken_freertos_sdk/toolchain && XZ_OPT="-T0" tar -xf *.tar.xz; fi
+2026-06-27T02:29:54.7668804Z prebuild for OpenBK7238 not found ... 
+2026-06-27T02:29:54.7670506Z cd sdk/beken_freertos_sdk && ARM_GCC_TOOLCHAIN=/home/runner/work/baken_test/baken_test/sdk/beken_freertos_sdk/toolchain/arm-none-eabi/bin/ OBK_VARIANT=6 sh build.sh bk7238 pm01_deye_hlw8112
+2026-06-27T02:29:54.7703521Z make[1]: Entering directory '/home/runner/work/baken_test/baken_test/sdk/beken_freertos_sdk'
+2026-06-27T02:29:54.7749410Z Build for [0;32mbk7238[0m ...
+2026-06-27T02:29:54.7871766Z   \033[0;32mGEN  .config\033[0m 
+2026-06-27T02:29:54.8115148Z SDK DIR: ./beken378
+2026-06-27T02:29:54.8150629Z cp ./beken378/lib/librwnx_bk7238.a to ./beken378/lib/librwnx.a
+2026-06-27T02:29:54.8209153Z cp ./beken378/lib/libble_bk7238.a to ./beken378/lib/libble.a
+2026-06-27T02:29:54.8228764Z cp ./beken378/lib/libcal_bk7238.a to ./beken378/lib/libcal.a
+2026-06-27T02:29:54.8278514Z cp ./beken378/lib/libsupplicant_bk7238.a to ./beken378/lib/libsupplicant.a
+2026-06-27T02:29:54.8294877Z cp ./beken378/lib/libuart_debug_bk7238.a to ./beken378/lib/libuart_debug.a
+2026-06-27T02:29:54.8311125Z cp ./beken378/lib/librf_test_bk7238.a to ./beken378/lib/librf_test.a
+2026-06-27T02:29:54.8326205Z cp ./beken378/lib/librf_use_bk7238.a to ./beken378/lib/librf_use.a
+2026-06-27T02:29:54.8346539Z application.mk:446: using-bk7238_bsp.lds
+2026-06-27T02:29:54.8347491Z make[2]: Entering directory '/home/runner/work/baken_test/baken_test/sdk/beken_freertos_sdk'
+2026-06-27T02:29:54.9619221Z   [0;32mCC   app/../platforms/BK723x/ps.c[0m 
+2026-06-27T02:29:54.9620158Z   [0;32mCC   app/hal/bk7231/hal_adc_bk7231.c[0m 
+2026-06-27T02:29:54.9624112Z   [0;32mCC   app/hal/bk7231/hal_flashConfig_bk7231.c[0m 
+2026-06-27T02:29:54.9627812Z   [0;32mCC   app/hal/bk7231/hal_flashVars_bk7231.c[0m 
+2026-06-27T02:29:55.0735891Z app/hal/bk7231/hal_flashConfig_bk7231.c: In function 'HAL_Configuration_ReadConfigMemory':
+2026-06-27T02:29:55.0747202Z app/hal/bk7231/hal_flashConfig_bk7231.c:40:9: warning: implicit declaration of function 'hal_flash_lock'; did you mean 'hal_flash_init'? [-Wimplicit-function-declaration]
+2026-06-27T02:29:55.0748769Z   [0;32mCC   app/hal/bk7231/hal_generic_bk7231.c[0m 
+2026-06-27T02:29:55.0756195Z    40 |         hal_flash_lock();
+2026-06-27T02:29:55.0756788Z       |         ^~~~~~~~~~~~~~
+2026-06-27T02:29:55.0757488Z       |         hal_flash_init
+2026-06-27T02:29:55.0759226Z app/hal/bk7231/hal_flashConfig_bk7231.c:44:9: warning: implicit declaration of function 'hal_flash_unlock'; did you mean 'hal_flash_init'? [-Wimplicit-function-declaration]
+2026-06-27T02:29:55.0760846Z    44 |         hal_flash_unlock();
+2026-06-27T02:29:55.0761653Z       |         ^~~~~~~~~~~~~~~~
+2026-06-27T02:29:55.0762319Z       |         hal_flash_init
+2026-06-27T02:29:55.1918325Z   [0;32mCC   app/hal/bk7231/hal_hwtimer_bk7231.c[0m 
+2026-06-27T02:29:55.1983691Z   [0;32mCC   app/hal/bk7231/hal_main_bk7231.c[0m 
+2026-06-27T02:29:55.2336436Z   [0;32mCC   app/hal/bk7231/hal_pins_bk7231.c[0m 
+2026-06-27T02:29:55.2726508Z   [0;32mCC   app/hal/bk7231/hal_wifi_bk7231.c[0m 
+2026-06-27T02:29:55.2996573Z app/hal/bk7231/hal_main_bk7231.c: In function 'OBK_TriggerButtonPoll':
+2026-06-27T02:29:55.3036018Z app/hal/bk7231/hal_main_bk7231.c:92:12: warning: variable 'err' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:55.3065748Z    92 |   OSStatus err;
+2026-06-27T02:29:55.3095732Z       |            ^~~
+2026-06-27T02:29:55.3125924Z app/hal/bk7231/hal_main_bk7231.c: In function 'trigger_oneshot':
+2026-06-27T02:29:55.3156219Z app/hal/bk7231/hal_main_bk7231.c:128:12: warning: variable 'err' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:55.3185724Z   128 |   OSStatus err;
+2026-06-27T02:29:55.3215726Z       |            ^~~
+2026-06-27T02:29:55.3245958Z app/hal/bk7231/hal_main_bk7231.c: In function 'trigger_quick_oneshot':
+2026-06-27T02:29:55.3276210Z app/hal/bk7231/hal_main_bk7231.c:143:12: warning: variable 'err' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:55.3298149Z   143 |   OSStatus err;
+2026-06-27T02:29:55.3335924Z       |            ^~~
+2026-06-27T02:29:55.3366198Z In file included from app/hal/bk7231/hal_pins_bk7231.c:13:
+2026-06-27T02:29:55.3367384Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h:99:15: warning: 'i2c1_open' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:29:55.3368458Z    99 | static UINT32 i2c1_open(UINT32 op_flag);
+2026-06-27T02:29:55.3368978Z       |               ^~~~~~~~~
+2026-06-27T02:29:55.3370311Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h:100:15: warning: 'i2c1_close' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:29:55.3371388Z   100 | static UINT32 i2c1_close(void);
+2026-06-27T02:29:55.3371854Z       |               ^~~~~~~~~~
+2026-06-27T02:29:55.3372826Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h:101:15: warning: 'i2c1_read' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:29:55.3374077Z   101 | static UINT32 i2c1_read(char *user_buf, UINT32 count, UINT32 op_flag);
+2026-06-27T02:29:55.3374763Z       |               ^~~~~~~~~
+2026-06-27T02:29:55.3375962Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h:102:15: warning: 'i2c1_write' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:29:55.3377194Z   102 | static UINT32 i2c1_write(char *user_buf, UINT32 count, UINT32 op_flag);
+2026-06-27T02:29:55.3377884Z       |               ^~~~~~~~~~
+2026-06-27T02:29:55.3379110Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h:103:15: warning: 'i2c1_ctrl' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:29:55.3380308Z   103 | static UINT32 i2c1_ctrl(UINT32 cmd, void *param);
+2026-06-27T02:29:55.3380848Z       |               ^~~~~~~~~
+2026-06-27T02:29:55.3856696Z app/hal/bk7231/hal_wifi_bk7231.c: In function 'HAL_PrintNetworkInfo':
+2026-06-27T02:29:55.3866816Z app/hal/bk7231/hal_wifi_bk7231.c:225:41: warning: implicit declaration of function 'ef_set_env_blob' [-Wimplicit-function-declaration]
+2026-06-27T02:29:55.3868318Z   225 |                                         ef_set_env_blob("fcdata", &fcdata, sizeof(obkFastConnectData_t));
+2026-06-27T02:29:55.3869276Z       |                                         ^~~~~~~~~~~~~~~
+2026-06-27T02:29:55.3896299Z app/hal/bk7231/hal_wifi_bk7231.c: In function 'HAL_FastConnectToWiFi':
+2026-06-27T02:29:55.3926440Z app/hal/bk7231/hal_wifi_bk7231.c:405:19: warning: implicit declaration of function 'ef_get_env_blob' [-Wimplicit-function-declaration]
+2026-06-27T02:29:55.3929612Z   405 |         int len = ef_get_env_blob("fcdata", &fcdata, sizeof(obkFastConnectData_t), NULL);
+2026-06-27T02:29:55.3985754Z       |                   ^~~~~~~~~~~~~~~
+2026-06-27T02:29:55.3986723Z app/hal/bk7231/hal_wifi_bk7231.c: In function 'HAL_DisableEnhancedFastConnect':
+2026-06-27T02:29:55.4016221Z app/hal/bk7231/hal_wifi_bk7231.c:445:9: warning: implicit declaration of function 'ef_del_env' [-Wimplicit-function-declaration]
+2026-06-27T02:29:55.4017516Z   445 |         ef_del_env("fcdata");
+2026-06-27T02:29:55.4045833Z       |         ^~~~~~~~~~
+2026-06-27T02:29:55.4237877Z   [0;32mCC   app/hal/bk7231/hal_uart_bk7231.c[0m 
+2026-06-27T02:29:55.4240038Z   [0;32mCC   app/hal/bk7231/hal_ota_bk7231.c[0m 
+2026-06-27T02:29:55.4960663Z   [0;32mCC   app/hal/bk7231/hal_bt_proxy_bk7231.c[0m 
+2026-06-27T02:29:55.5986570Z   [0;32mCC   app/user_main.c[0m 
+2026-06-27T02:29:55.6466470Z   [0;32mCC   app/base64/base64.c[0m 
+2026-06-27T02:29:55.6761672Z   [0;32mCC   app/bitmessage/bitmessage_read.c[0m 
+2026-06-27T02:29:55.6866449Z   [0;32mCC   app/bitmessage/bitmessage_write.c[0m 
+2026-06-27T02:29:55.7964365Z   [0;32mCC   app/cJSON/cJSON.c[0m 
+2026-06-27T02:29:55.8986669Z   [0;32mCC   app/cmnds/cmd_berry.c[0m 
+2026-06-27T02:29:55.9046269Z   [0;32mCC   app/cmnds/cmd_channels.c[0m 
+2026-06-27T02:29:56.0350310Z   [0;32mCC   app/cmnds/cmd_enums.c[0m 
+2026-06-27T02:29:56.0806465Z   [0;32mCC   app/cmnds/cmd_eventHandlers.c[0m 
+2026-06-27T02:29:56.2456654Z   [0;32mCC   app/cmnds/cmd_if.c[0m 
+2026-06-27T02:29:56.2917289Z   [0;32mCC   app/cmnds/cmd_main.c[0m 
+2026-06-27T02:29:56.3586401Z app/cmnds/cmd_if.c: In function 'strCompareBound':
+2026-06-27T02:29:56.3646156Z app/cmnds/cmd_if.c:121:21: warning: variable 's_start' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:56.3647060Z   121 |         const char *s_start;
+2026-06-27T02:29:56.3705705Z       |                     ^~~~~~~
+2026-06-27T02:29:56.3706393Z app/cmnds/cmd_if.c: In function 'CMD_ExpandConstantString':
+2026-06-27T02:29:56.3765965Z app/cmnds/cmd_if.c:666:14: warning: unused variable 'tmp' [-Wunused-variable]
+2026-06-27T02:29:56.3766709Z   666 |         char tmp[32];
+2026-06-27T02:29:56.3795832Z       |              ^~~
+2026-06-27T02:29:56.3796465Z app/cmnds/cmd_if.c:664:13: warning: unused variable 'idx' [-Wunused-variable]
+2026-06-27T02:29:56.3797168Z   664 |         int idx;
+2026-06-27T02:29:56.3855748Z       |             ^~~
+2026-06-27T02:29:56.3856270Z app/cmnds/cmd_if.c: In function 'CMD_ExpandingStrdup':
+2026-06-27T02:29:56.3857100Z app/cmnds/cmd_if.c:831:21: warning: unused variable 'p' [-Wunused-variable]
+2026-06-27T02:29:56.3885832Z   831 |         const char *p;
+2026-06-27T02:29:56.3915786Z       |                     ^
+2026-06-27T02:29:56.3976270Z   [0;32mCC   app/cmnds/cmd_newLEDDriver_colors.c[0m 
+2026-06-27T02:29:56.4036628Z app/cmnds/cmd_main.c:670:24: warning: 'CMD_PingInterval' defined but not used [-Wunused-function]
+2026-06-27T02:29:56.4038380Z   670 | static commandResult_t CMD_PingInterval(const void* context, const char* cmd, const char* args, int cmdFlags) {
+2026-06-27T02:29:56.4039361Z       |                        ^~~~~~~~~~~~~~~~
+2026-06-27T02:29:56.4040128Z app/cmnds/cmd_main.c:656:24: warning: 'CMD_PingHost' defined but not used [-Wunused-function]
+2026-06-27T02:29:56.4041278Z   656 | static commandResult_t CMD_PingHost(const void* context, const char* cmd, const char* args, int cmdFlags) {
+2026-06-27T02:29:56.4042131Z       |                        ^~~~~~~~~~~~
+2026-06-27T02:29:56.5445162Z   [0;32mCC   app/cmnds/cmd_newLEDDriver.c[0m 
+2026-06-27T02:29:56.6386734Z   [0;32mCC   app/cmnds/cmd_repeatingEvents.c[0m 
+2026-06-27T02:29:56.6536301Z   [0;32mCC   app/cmnds/cmd_send.c[0m 
+2026-06-27T02:29:56.6566001Z app/cmnds/cmd_newLEDDriver.c: In function 'LED_RunQuickColorLerp':
+2026-06-27T02:29:56.6596250Z app/cmnds/cmd_newLEDDriver.c:317:14: warning: variable 'finalRGBCW' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:56.6625818Z   317 |         byte finalRGBCW[5];
+2026-06-27T02:29:56.6645892Z       |              ^~~~~~~~~~
+2026-06-27T02:29:56.6685943Z app/cmnds/cmd_newLEDDriver.c: In function 'apply_smart_light':
+2026-06-27T02:29:56.6716232Z app/cmnds/cmd_newLEDDriver.c:550:14: warning: variable 'finalRGBCW' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:56.6745809Z   550 |         byte finalRGBCW[5];
+2026-06-27T02:29:56.6766005Z       |              ^~~~~~~~~~
+2026-06-27T02:29:56.6786156Z app/cmnds/cmd_newLEDDriver.c: In function 'LED_SetEnableAll':
+2026-06-27T02:29:56.6796805Z app/cmnds/cmd_newLEDDriver.c:947:14: warning: unused variable 'bHadChange' [-Wunused-variable]
+2026-06-27T02:29:56.6797830Z   947 |         bool bHadChange;
+2026-06-27T02:29:56.6798504Z       |              ^~~~~~~~~~
+2026-06-27T02:29:56.6801941Z   [0;32mCC   app/cmnds/cmd_script.c[0m 
+2026-06-27T02:29:56.7916462Z app/cmnds/cmd_script.c: In function 'SVM_RunThread':
+2026-06-27T02:29:56.7946470Z app/cmnds/cmd_script.c:376:18: warning: variable 'p' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:56.7947378Z   376 |         int len, p;
+2026-06-27T02:29:56.7975952Z       |                  ^
+2026-06-27T02:29:56.8606523Z   [0;32mCC   app/cmnds/cmd_simulatorOnly.c[0m 
+2026-06-27T02:29:56.8936338Z   [0;32mCC   app/cmnds/cmd_tasmota.c[0m 
+2026-06-27T02:29:57.0078845Z app/cmnds/cmd_tasmota.c: In function 'LFS_ReadFile':
+2026-06-27T02:29:57.0106422Z app/cmnds/cmd_tasmota.c:202:29: warning: variable 'at' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:57.0125868Z   202 |                 byte *res, *at;
+2026-06-27T02:29:57.0135952Z       |                             ^~
+2026-06-27T02:29:57.0166282Z app/cmnds/cmd_tasmota.c:201:21: warning: variable 'cnt' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:57.0194980Z   201 |                 int cnt;
+2026-06-27T02:29:57.0215806Z       |                     ^~~
+2026-06-27T02:29:57.0426156Z   [0;32mCC   app/cmnds/cmd_tcp.c[0m 
+2026-06-27T02:29:57.0736245Z   [0;32mCC   app/cmnds/cmd_test.c[0m 
+2026-06-27T02:29:57.2264405Z   [0;32mCC   app/cmnds/cmd_tokenizer.c[0m 
+2026-06-27T02:29:57.2303774Z   [0;32mCC   app/devicegroups/deviceGroups_read.c[0m 
+2026-06-27T02:29:57.2446260Z   [0;32mCC   app/devicegroups/deviceGroups_util.c[0m 
+2026-06-27T02:29:57.2656206Z   [0;32mCC   app/devicegroups/deviceGroups_write.c[0m 
+2026-06-27T02:29:57.4402075Z   [0;32mCC   app/hal/generic/hal_adc_generic.c[0m 
+2026-06-27T02:29:57.4621631Z   [0;32mCC   app/hal/generic/hal_bt_proxy_generic.c[0m 
+2026-06-27T02:29:57.4766361Z   [0;32mCC   app/hal/generic/hal_flashConfig_generic.c[0m 
+2026-06-27T02:29:57.4916154Z   [0;32mCC   app/hal/generic/hal_flashVars_generic.c[0m 
+2026-06-27T02:29:57.5459243Z   [0;32mCC   app/hal/generic/hal_generic.c[0m 
+2026-06-27T02:29:57.5876722Z   [0;32mCC   app/hal/generic/hal_hwtimer_generic.c[0m 
+2026-06-27T02:29:57.6356315Z   [0;32mCC   app/hal/generic/hal_main_generic.c[0m 
+2026-06-27T02:29:57.6581987Z   [0;32mCC   app/hal/generic/hal_ota_generic.c[0m 
+2026-06-27T02:29:57.6621600Z   [0;32mCC   app/hal/generic/hal_pins_generic.c[0m 
+2026-06-27T02:29:57.6906428Z   [0;32mCC   app/hal/generic/hal_wifi_generic.c[0m 
+2026-06-27T02:29:57.7536393Z app/hal/generic/hal_ota_generic.c: In function 'http_rest_post_flash':
+2026-06-27T02:29:57.7566298Z app/hal/generic/hal_ota_generic.c:24:13: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:57.7595870Z    24 |         int ret = 0;
+2026-06-27T02:29:57.7625817Z       |             ^~~
+2026-06-27T02:29:57.7646426Z app/hal/generic/hal_ota_generic.c:19:13: warning: unused variable 'writelen' [-Wunused-variable]
+2026-06-27T02:29:57.7647770Z    19 |         int writelen = request->bodylen;
+2026-06-27T02:29:57.7648517Z       |             ^~~~~~~~
+2026-06-27T02:29:57.7649546Z app/hal/generic/hal_ota_generic.c:18:15: warning: unused variable 'writebuf' [-Wunused-variable]
+2026-06-27T02:29:57.7650677Z    18 |         char* writebuf = request->bodystart;
+2026-06-27T02:29:57.7651464Z       |               ^~~~~~~~
+2026-06-27T02:29:57.7652558Z app/hal/generic/hal_ota_generic.c:17:13: warning: variable 'towrite' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:57.7653813Z    17 |         int towrite = request->bodylen;
+2026-06-27T02:29:57.7654553Z       |             ^~~~~~~
+2026-06-27T02:29:57.7655750Z app/hal/generic/hal_ota_generic.c:16:13: warning: unused variable 'total' [-Wunused-variable]
+2026-06-27T02:29:57.7656750Z    16 |         int total = 0;
+2026-06-27T02:29:57.7657343Z       |             ^~~~~
+2026-06-27T02:29:57.8261905Z   [0;32mCC   app/hal/generic/hal_uart_generic.c[0m 
+2026-06-27T02:29:57.8556357Z   [0;32mCC   app/httpserver/hass.c[0m 
+2026-06-27T02:29:57.8616140Z   [0;32mCC   app/httpserver/http_basic_auth.c[0m 
+2026-06-27T02:29:57.8916170Z   [0;32mCC   app/httpserver/http_fns.c[0m 
+2026-06-27T02:29:57.9726235Z app/httpserver/hass.c: In function 'hass_init_light_singleColor_onChannels':
+2026-06-27T02:29:57.9756390Z app/httpserver/hass.c:979:21: warning: variable 'clientId' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:57.9765897Z   979 |         const char* clientId;
+2026-06-27T02:29:57.9772212Z       |                     ^~~~~~~~
+2026-06-27T02:29:58.0102543Z app/httpserver/http_fns.c: In function 'http_fn_index':
+2026-06-27T02:29:58.0126368Z app/httpserver/http_fns.c:770:21: warning: variable 'c_realPwms' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:58.0156007Z   770 |                 int c_realPwms = 0;
+2026-06-27T02:29:58.0185881Z       |                     ^~~~~~~~~~
+2026-06-27T02:29:58.0186791Z app/httpserver/http_fns.c: In function 'doHomeAssistantDiscovery':
+2026-06-27T02:29:58.0216184Z app/httpserver/http_fns.c:2046:14: warning: unused variable 'measuringPower' [-Wunused-variable]
+2026-06-27T02:29:58.0217035Z  2046 |         bool measuringPower = false;
+2026-06-27T02:29:58.0217488Z       |              ^~~~~~~~~~~~~~
+2026-06-27T02:29:58.0218013Z app/httpserver/http_fns.c: In function 'http_fn_ha_cfg':
+2026-06-27T02:29:58.0246293Z app/httpserver/http_fns.c:2694:14: warning: unused variable 'lightAdded' [-Wunused-variable]
+2026-06-27T02:29:58.0247804Z   [0;32mCC   app/httpserver/http_tcp_server.c[0m 
+2026-06-27T02:29:58.0275832Z  2694 |         char lightAdded = 0;
+2026-06-27T02:29:58.0276302Z       |              ^~~~~~~~~~
+2026-06-27T02:29:58.0277033Z app/httpserver/http_fns.c:2693:14: warning: unused variable 'switchAdded' [-Wunused-variable]
+2026-06-27T02:29:58.0277837Z  2693 |         char switchAdded = 0;
+2026-06-27T02:29:58.0278278Z       |              ^~~~~~~~~~~
+2026-06-27T02:29:58.0278981Z app/httpserver/http_fns.c:2692:14: warning: unused variable 'mqttAdded' [-Wunused-variable]
+2026-06-27T02:29:58.0279754Z  2692 |         char mqttAdded = 0;
+2026-06-27T02:29:58.0280178Z       |              ^~~~~~~~~
+2026-06-27T02:29:58.0280916Z app/httpserver/http_fns.c:2691:13: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:58.0281715Z  2691 |         int i;
+2026-06-27T02:29:58.0282333Z       |             ^
+2026-06-27T02:29:58.0283151Z app/httpserver/http_fns.c:2690:21: warning: variable 'clientId' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:58.0284001Z  2690 |         const char* clientId;
+2026-06-27T02:29:58.0284414Z       |                     ^~~~~~~~
+2026-06-27T02:29:58.0285110Z app/httpserver/http_fns.c:2688:13: warning: unused variable 'dInputCount' [-Wunused-variable]
+2026-06-27T02:29:58.0286126Z  2688 |         int dInputCount;
+2026-06-27T02:29:58.0286511Z       |             ^~~~~~~~~~~
+2026-06-27T02:29:58.0287181Z app/httpserver/http_fns.c:2687:13: warning: unused variable 'pwmCount' [-Wunused-variable]
+2026-06-27T02:29:58.0287916Z  2687 |         int pwmCount;
+2026-06-27T02:29:58.0288283Z       |             ^~~~~~~~
+2026-06-27T02:29:58.0288936Z app/httpserver/http_fns.c:2686:13: warning: unused variable 'relayCount' [-Wunused-variable]
+2026-06-27T02:29:58.0289681Z  2686 |         int relayCount;
+2026-06-27T02:29:58.0290075Z       |             ^~~~~~~~~~
+2026-06-27T02:29:58.0656545Z   [0;32mCC   app/httpserver/new_tcp_server.c[0m 
+2026-06-27T02:29:58.2086259Z   [0;32mCC   app/httpserver/json_interface.c[0m 
+2026-06-27T02:29:58.3197672Z app/httpserver/json_interface.c: In function 'http_tasmota_json_power':
+2026-06-27T02:29:58.3223170Z app/httpserver/json_interface.c:83:13: warning: variable 'relayIndexingOffset' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:58.3245856Z    83 |         int relayIndexingOffset;
+2026-06-27T02:29:58.3257443Z   [0;32mCC   app/httpserver/new_http.c[0m 
+2026-06-27T02:29:58.3275838Z       |             ^~~~~~~~~~~~~~~~~~~
+2026-06-27T02:29:58.3306014Z app/httpserver/json_interface.c: In function 'http_tasmota_json_status_SNS':
+2026-06-27T02:29:58.3307271Z app/httpserver/json_interface.c:415:14: warning: variable 'bHasAnyDHT' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:58.3326614Z   415 |         bool bHasAnyDHT = false;
+2026-06-27T02:29:58.3365703Z       |              ^~~~~~~~~~
+2026-06-27T02:29:58.3376108Z app/httpserver/json_interface.c:392:14: warning: unused variable 'buff' [-Wunused-variable]
+2026-06-27T02:29:58.3395753Z   392 |         char buff[20];
+2026-06-27T02:29:58.3425669Z       |              ^~~~
+2026-06-27T02:29:58.3455944Z app/httpserver/json_interface.c: In function 'http_tasmota_json_status_STS':
+2026-06-27T02:29:58.3486031Z app/httpserver/json_interface.c:476:16: warning: unused variable 'localTime' [-Wunused-variable]
+2026-06-27T02:29:58.3515837Z   476 |         time_t localTime = (time_t)TIME_GetCurrentTime();
+2026-06-27T02:29:58.3545717Z       |                ^~~~~~~~~
+2026-06-27T02:29:58.3575982Z app/httpserver/json_interface.c: In function 'http_tasmota_json_status_TIM':
+2026-06-27T02:29:58.3606040Z app/httpserver/json_interface.c:526:14: warning: unused variable 'buff' [-Wunused-variable]
+2026-06-27T02:29:58.3635802Z   526 |         char buff[20];
+2026-06-27T02:29:58.3636277Z       |              ^~~~
+2026-06-27T02:29:58.3666037Z app/httpserver/json_interface.c: In function 'http_tasmota_json_status_generic':
+2026-06-27T02:29:58.3696149Z app/httpserver/json_interface.c:761:16: warning: variable 'ntpTime' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:58.3726370Z   761 |         time_t ntpTime = 0; // if no NTP_time set, we will not change this value, but just stick to 0 and hence "fake" start of epoch 1970-01-01T00:00:00
+2026-06-27T02:29:58.3755650Z       |                ^~~~~~~
+2026-06-27T02:29:58.3936128Z   [0;32mCC   app/httpserver/rest_interface.c[0m 
+2026-06-27T02:29:58.5066297Z app/httpserver/rest_interface.c: In function 'http_rest_get_lfs_file':
+2026-06-27T02:29:58.5096149Z app/httpserver/rest_interface.c:551:31: warning: unused variable 'ext' [-Wunused-variable]
+2026-06-27T02:29:58.5125831Z   551 |                         char* ext = fpath;
+2026-06-27T02:29:58.5155787Z       |                               ^~~
+2026-06-27T02:29:58.5185990Z app/httpserver/rest_interface.c: In function 'http_rest_get_info':
+2026-06-27T02:29:58.5216930Z app/httpserver/rest_interface.c:1064:41: warning: passing argument 2 of 'poststr_escapedForJSON' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+2026-06-27T02:29:58.5246065Z  1064 |         poststr_escapedForJSON(request, CFG_GetShortStartupCommand());
+2026-06-27T02:29:58.5275987Z       |                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2026-06-27T02:29:58.5305913Z In file included from app/httpserver/rest_interface.c:5:
+2026-06-27T02:29:58.5336226Z app/httpserver/../httpserver/new_http.h:72:60: note: expected 'char *' but argument is of type 'const char *'
+2026-06-27T02:29:58.5356139Z    72 | void poststr_escapedForJSON(http_request_t* request, char* str);
+2026-06-27T02:29:58.5375955Z       |                                                      ~~~~~~^~~
+2026-06-27T02:29:58.5406102Z app/httpserver/rest_interface.c: In function 'http_rest_get_flash':
+2026-06-27T02:29:58.5426389Z app/httpserver/rest_interface.c:1341:13: warning: variable 'res' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:58.5455741Z  1341 |         int res;
+2026-06-27T02:29:58.5465894Z       |             ^~~
+2026-06-27T02:29:58.5495966Z app/httpserver/rest_interface.c: At top level:
+2026-06-27T02:29:58.5516418Z app/httpserver/rest_interface.c:70:12: warning: 'http_rest_get_bt_scan' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:29:58.5526135Z    70 | static int http_rest_get_bt_scan(http_request_t* request);
+2026-06-27T02:29:58.5555866Z       |            ^~~~~~~~~~~~~~~~~~~~~
+2026-06-27T02:29:58.7294186Z   [0;32mCC   app/mqtt/new_mqtt_deduper.c[0m 
+2026-06-27T02:29:58.7394855Z   [0;32mCC   app/jsmn/jsmn.c[0m 
+2026-06-27T02:29:58.8356557Z app/mqtt/new_mqtt_deduper.c:59:13: warning: 'DD_Mutex_Free' defined but not used [-Wunused-function]
+2026-06-27T02:29:58.8376088Z    59 | static void DD_Mutex_Free()
+2026-06-27T02:29:58.8406096Z       |             ^~~~~~~~~~~~~
+2026-06-27T02:29:58.8426389Z app/mqtt/new_mqtt_deduper.c:45:13: warning: 'DD_Mutex_Take' defined but not used [-Wunused-function]
+2026-06-27T02:29:58.8455904Z    45 | static bool DD_Mutex_Take(int del) {
+2026-06-27T02:29:58.8475777Z       |             ^~~~~~~~~~~~~
+2026-06-27T02:29:58.8976480Z   [0;32mCC   app/logging/logging.c[0m 
+2026-06-27T02:29:58.8996527Z   [0;32mCC   app/mqtt/new_mqtt.c[0m 
+2026-06-27T02:29:58.9606177Z   [0;32mCC   app/new_cfg.c[0m 
+2026-06-27T02:29:58.9966338Z   [0;32mCC   app/new_common.c[0m 
+2026-06-27T02:29:59.0116144Z app/mqtt/new_mqtt.c: In function 'MQTT_do_connect':
+2026-06-27T02:29:59.0146696Z app/mqtt/new_mqtt.c:1306:76: warning: passing argument 3 of 'dns_gethostbyname_addrtype' from incompatible pointer type [-Wincompatible-pointer-types]
+2026-06-27T02:29:59.0176394Z  1306 |             res = dns_gethostbyname_addrtype(mqtt_host, &mqtt_ip_resolved, dnsFound, NULL, LWIP_DNS_ADDRTYPE_IPV4);
+2026-06-27T02:29:59.0206048Z       |                                                                            ^~~~~~~~
+2026-06-27T02:29:59.0236954Z       |                                                                            |
+2026-06-27T02:29:59.0266287Z       |                                                                            void (*)(const char *, ip_addr_t *, void *) {aka void (*)(const char *, struct ip4_addr *, void *)}
+2026-06-27T02:29:59.0295866Z In file included from app/mqtt/new_mqtt.c:21:
+2026-06-27T02:29:59.0327539Z /home/runner/work/baken_test/baken_test/sdk/beken_freertos_sdk/beken378/func/lwip_intf/lwip-2.1.3/src/include/lwip/dns.h:112:55: note: expected 'dns_found_callback' {aka 'void (*)(const char *, const struct ip4_addr *, void *)'} but argument is of type 'void (*)(const char *, ip_addr_t *, void *)' {aka 'void (*)(const char *, struct ip4_addr *, void *)'}
+2026-06-27T02:29:59.0355941Z   112 |                                    dns_found_callback found, void *callback_arg,
+2026-06-27T02:29:59.0356679Z       |                                    ~~~~~~~~~~~~~~~~~~~^~~~~
+2026-06-27T02:29:59.0386385Z app/mqtt/new_mqtt.c:1201:6: note: 'dnsFound' declared here
+2026-06-27T02:29:59.0445988Z  1201 | void dnsFound(const char *name, ip_addr_t *ipaddr, void *arg)
+2026-06-27T02:29:59.0475779Z       |      ^~~~~~~~
+2026-06-27T02:29:59.0486771Z /home/runner/work/baken_test/baken_test/sdk/beken_freertos_sdk/beken378/func/lwip_intf/lwip-2.1.3/src/include/lwip/dns.h:103:16: note: 'dns_found_callback' declared here
+2026-06-27T02:29:59.0536169Z   103 | typedef void (*dns_found_callback)(const char *name, const ip_addr_t *ipaddr, void *callback_arg);
+2026-06-27T02:29:59.0565769Z       |                ^~~~~~~~~~~~~~~~~~
+2026-06-27T02:29:59.0596145Z app/mqtt/new_mqtt.c:1227:28: warning: unused variable 'mqtt_verify_tls_cert' [-Wunused-variable]
+2026-06-27T02:29:59.0625892Z  1227 |         bool mqtt_use_tls, mqtt_verify_tls_cert;
+2026-06-27T02:29:59.0645901Z       |                            ^~~~~~~~~~~~~~~~~~~~
+2026-06-27T02:29:59.0686099Z app/mqtt/new_mqtt.c:1227:14: warning: unused variable 'mqtt_use_tls' [-Wunused-variable]
+2026-06-27T02:29:59.0715910Z  1227 |         bool mqtt_use_tls, mqtt_verify_tls_cert;
+2026-06-27T02:29:59.0732129Z       |              ^~~~~~~~~~~~
+2026-06-27T02:29:59.0776122Z app/mqtt/new_mqtt.c:1225:25: warning: unused variable 'hostEntry' [-Wunused-variable]
+2026-06-27T02:29:59.0805828Z  1225 |         struct hostent* hostEntry;
+2026-06-27T02:29:59.0806456Z       |                         ^~~~~~~~~
+2026-06-27T02:29:59.0807001Z app/mqtt/new_mqtt.c: In function 'MQTT_PublishCommand':
+2026-06-27T02:29:59.0807884Z app/mqtt/new_mqtt.c:1531:28: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:59.0808704Z  1531 |         OBK_Publish_Result ret;
+2026-06-27T02:29:59.0809144Z       |                            ^~~
+2026-06-27T02:29:59.0835874Z app/mqtt/new_mqtt.c: In function 'MQTT_PublishFile':
+2026-06-27T02:29:59.0866102Z app/mqtt/new_mqtt.c:1559:28: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:59.0895833Z  1559 |         OBK_Publish_Result ret;
+2026-06-27T02:29:59.0915924Z       |                            ^~~
+2026-06-27T02:29:59.0945953Z app/mqtt/new_mqtt.c: In function 'MQTT_PublishCommandInteger':
+2026-06-27T02:29:59.0976165Z app/mqtt/new_mqtt.c:1589:28: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:59.1005828Z  1589 |         OBK_Publish_Result ret;
+2026-06-27T02:29:59.1035866Z       |                            ^~~
+2026-06-27T02:29:59.1065971Z app/mqtt/new_mqtt.c: In function 'MQTT_PublishCommandFloat':
+2026-06-27T02:29:59.1096165Z app/mqtt/new_mqtt.c:1614:28: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:59.1115977Z  1614 |         OBK_Publish_Result ret;
+2026-06-27T02:29:59.1155798Z       |                            ^~~
+2026-06-27T02:29:59.1185951Z app/mqtt/new_mqtt.c: In function 'MQTT_PublishCommandDriver':
+2026-06-27T02:29:59.1216155Z app/mqtt/new_mqtt.c:1639:28: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:59.1245865Z  1639 |         OBK_Publish_Result ret;
+2026-06-27T02:29:59.1270564Z       |                            ^~~
+2026-06-27T02:29:59.1315964Z app/new_cfg.c: In function 'CFG_SetFlag':
+2026-06-27T02:29:59.1346561Z app/new_cfg.c:563:26: warning: assignment to 'int *' from incompatible pointer type 'uint32_t *' {aka 'long unsigned int *'} [-Wincompatible-pointer-types]
+2026-06-27T02:29:59.1347813Z   563 |                 cfgValue = &g_cfg.genericFlags2;
+2026-06-27T02:29:59.1348339Z       |                          ^
+2026-06-27T02:29:59.1349450Z app/new_cfg.c:567:26: warning: assignment to 'int *' from incompatible pointer type 'uint32_t *' {aka 'long unsigned int *'} [-Wincompatible-pointer-types]
+2026-06-27T02:29:59.1350669Z   567 |                 cfgValue = &g_cfg.genericFlags;
+2026-06-27T02:29:59.1351209Z       |                          ^
+2026-06-27T02:29:59.2256280Z   [0;32mCC   app/new_ping.c[0m 
+2026-06-27T02:29:59.2566381Z   [0;32mCC   app/new_pins.c[0m 
+2026-06-27T02:29:59.3709692Z app/new_pins.c: In function 'PIN_SetPinRoleForPinIndex':
+2026-06-27T02:29:59.3711024Z app/new_pins.c:1223:29: warning: variable 'channelValue' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:59.3712198Z  1223 |                         int channelValue;
+2026-06-27T02:29:59.3712976Z       |                             ^~~~~~~~~~~~
+2026-06-27T02:29:59.3713974Z app/new_pins.c:1236:29: warning: variable 'channelValue' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:59.3714962Z  1236 |                         int channelValue;
+2026-06-27T02:29:59.3715935Z       |                             ^~~~~~~~~~~~
+2026-06-27T02:29:59.4662083Z   [0;32mCC   app/rgb2hsv.c[0m 
+2026-06-27T02:29:59.5728223Z   [0;32mCC   app/tiny_crc8.c[0m 
+2026-06-27T02:29:59.5767948Z   [0;32mCC   app/httpclient/http_client.c[0m 
+2026-06-27T02:29:59.6168597Z   [0;32mCC   app/httpclient/utils_net.c[0m 
+2026-06-27T02:29:59.6496643Z   [0;32mCC   app/httpclient/utils_timer.c[0m 
+2026-06-27T02:29:59.7166066Z app/httpclient/utils_net.c: In function 'HAL_TCP_Write':
+2026-06-27T02:29:59.7196414Z app/httpclient/utils_net.c:120:14: warning: variable 'err_code' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:59.7215829Z   120 |     int ret, err_code;
+2026-06-27T02:29:59.7216257Z       |              ^~~~~~~~
+2026-06-27T02:29:59.7216769Z app/httpclient/utils_net.c: In function 'HAL_TCP_Read':
+2026-06-27T02:29:59.7217748Z app/httpclient/utils_net.c:199:20: warning: variable 'timeout' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:29:59.7218641Z   199 |     struct timeval timeout;
+2026-06-27T02:29:59.7219058Z       |                    ^~~~~~~
+2026-06-27T02:29:59.9036761Z   [0;32mCC   app/littlefs/lfs_util.c[0m 
+2026-06-27T02:30:00.0286408Z   [0;32mCC   app/littlefs/lfs.c[0m 
+2026-06-27T02:30:00.0504498Z   [0;32mCC   app/littlefs/our_lfs.c[0m 
+2026-06-27T02:30:00.1076657Z   [0;32mCC   app/driver/drv_main.c[0m 
+2026-06-27T02:30:00.1856574Z   [0;32mCC   app/driver/drv_adcButton.c[0m 
+2026-06-27T02:30:00.3696556Z   [0;32mCC   app/driver/drv_adcSmoother.c[0m 
+2026-06-27T02:30:00.4196597Z   [0;32mCC   app/driver/drv_aht2x.c[0m 
+2026-06-27T02:30:00.4317610Z   [0;32mCC   app/driver/drv_battery.c[0m 
+2026-06-27T02:30:00.6009698Z   [0;32mCC   app/driver/drv_bl0937.c[0m 
+2026-06-27T02:30:00.6806567Z   [0;32mCC   app/driver/drv_bl0942.c[0m 
+2026-06-27T02:30:00.7074850Z   [0;32mCC   app/driver/drv_bl_shared.c[0m 
+2026-06-27T02:30:00.7118293Z   [0;32mCC   app/driver/drv_bmp280.c[0m 
+2026-06-27T02:30:00.7397850Z   [0;32mCC   app/driver/drv_bmpi2c.c[0m 
+2026-06-27T02:30:00.7846386Z   [0;32mCC   app/driver/drv_bkPartitions.c[0m 
+2026-06-27T02:30:00.8876857Z app/driver/drv_bkPartitions.c:34:12: warning: 'is_position_in_data_zone' defined but not used [-Wunused-function]
+2026-06-27T02:30:00.8905955Z    34 | static int is_position_in_data_zone(int abs_offset) {
+2026-06-27T02:30:00.8935798Z       |            ^~~~~~~~~~~~~~~~~~~~~~~~
+2026-06-27T02:30:00.8966194Z app/driver/drv_bkPartitions.c:17:12: warning: 'read_len' defined but not used [-Wunused-variable]
+2026-06-27T02:30:00.8995822Z    17 | static int read_len = 0x1000;
+2026-06-27T02:30:00.9025666Z       |            ^~~~~~~~
+2026-06-27T02:30:00.9116939Z   [0;32mCC   app/driver/drv_bp1658cj.c[0m 
+2026-06-27T02:30:01.0819794Z   [0;32mCC   app/driver/drv_bp5758d.c[0m 
+2026-06-27T02:30:01.1474649Z   [0;32mCC   app/driver/drv_bridge_driver.c[0m 
+2026-06-27T02:30:01.2356435Z   [0;32mCC   app/driver/drv_chargingLimit.c[0m 
+2026-06-27T02:30:01.3336815Z   [0;32mCC   app/driver/drv_charts.c[0m 
+2026-06-27T02:30:01.4176665Z   [0;32mCC   app/driver/drv_cht8305.c[0m 
+2026-06-27T02:30:01.4366511Z app/driver/drv_charts.c: In function 'Chart_Display':
+2026-06-27T02:30:01.4395979Z app/driver/drv_charts.c:433:164: warning: unknown escape sequence: '\s'
+2026-06-27T02:30:01.4427613Z   433 |         poststr(request, "var labels =document.getElementById('chartlabels').value.split(/\s*,\s*/).map(Number).map((x)=>new Date(x * 1000).toLocaleTimeString());"); // we transmitted only timestamps, let Javascript do the work to convert them ;-)
+2026-06-27T02:30:01.4436207Z       |                                                                                                                                                                    ^
+2026-06-27T02:30:01.4466046Z app/driver/drv_charts.c:433:164: warning: unknown escape sequence: '\s'
+2026-06-27T02:30:01.4466964Z app/driver/drv_charts.c:435:126: warning: unknown escape sequence: '\s'
+2026-06-27T02:30:01.4468209Z   435 |                 hprintf255(request, "var data%i = document.getElementById('chartdata%i').value.split(/\s*,\s*/).map(Number);",i,i);
+2026-06-27T02:30:01.4469468Z       |                                                                                                                              ^
+2026-06-27T02:30:01.4470356Z app/driver/drv_charts.c:435:126: warning: unknown escape sequence: '\s'
+2026-06-27T02:30:01.4471291Z app/driver/drv_charts.c:392:14: warning: unused variable 'buffer' [-Wunused-variable]
+2026-06-27T02:30:01.4472060Z   392 |         char buffer[64];
+2026-06-27T02:30:01.4472485Z       |              ^~~~~~
+2026-06-27T02:30:01.4735145Z   [0;32mCC   app/driver/drv_cse7761.c[0m 
+2026-06-27T02:30:01.4766845Z   [0;32mCC   app/driver/drv_cse7766.c[0m 
+2026-06-27T02:30:01.5028217Z   [0;32mCC   app/driver/drv_ddp.c[0m 
+2026-06-27T02:30:01.5189225Z   [0;32mCC   app/driver/drv_debouncer.c[0m 
+2026-06-27T02:30:01.6096454Z app/driver/drv_ddp.c: In function 'DDP_Parse':
+2026-06-27T02:30:01.6126541Z app/driver/drv_ddp.c:129:22: warning: unused variable 'bytesPerPixel' [-Wunused-variable]
+2026-06-27T02:30:01.6156200Z   129 |                 byte bytesPerPixel = ((data[2] & 0b00111000) >> 3 == 0b011) ? 4 : 3;
+2026-06-27T02:30:01.6185920Z       |                      ^~~~~~~~~~~~~
+2026-06-27T02:30:01.7256670Z   [0;32mCC   app/driver/drv_dht_internal.c[0m 
+2026-06-27T02:30:01.7323382Z   [0;32mCC   app/driver/drv_dht.c[0m 
+2026-06-27T02:30:01.7353500Z   [0;32mCC   app/driver/drv_dmx512.c[0m 
+2026-06-27T02:30:01.7383535Z   [0;32mCC   app/driver/drv_drawers.c[0m 
+2026-06-27T02:30:01.8416405Z app/driver/drv_drawers.c: In function 'applyAmbient':
+2026-06-27T02:30:01.8446242Z app/driver/drv_drawers.c:43:13: warning: variable 'c' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:30:01.8475956Z    43 |         int c = 0;
+2026-06-27T02:30:01.8485812Z       |             ^
+2026-06-27T02:30:01.9399907Z   [0;32mCC   app/driver/drv_doorSensorWithDeepSleep.c[0m 
+2026-06-27T02:30:01.9817030Z   [0;32mCC   app/driver/drv_ds1820_common.c[0m 
+2026-06-27T02:30:01.9876249Z   [0;32mCC   app/driver/drv_ds1820_simple.c[0m 
+2026-06-27T02:30:02.0130149Z   [0;32mCC   app/driver/drv_ds1820_full.c[0m 
+2026-06-27T02:30:02.0275110Z   [0;32mCC   app/driver/drv_esphome_api.c[0m 
+2026-06-27T02:30:02.0493565Z   [0;32mCC   app/driver/drv_esphome_api_server.c[0m 
+2026-06-27T02:30:02.0596494Z   [0;32mCC   app/driver/drv_freeze.c[0m 
+2026-06-27T02:30:02.1826390Z   [0;32mCC   app/driver/drv_gn6932.c[0m 
+2026-06-27T02:30:02.2156243Z   [0;32mCC   app/driver/drv_hd2015.c[0m 
+2026-06-27T02:30:02.2276093Z   [0;32mCC   app/driver/drv_hgs02.c[0m 
+2026-06-27T02:30:02.2496137Z   [0;32mCC   app/driver/drv_hlw8112.c[0m 
+2026-06-27T02:30:02.3286594Z app/driver/drv_hgs02.c: In function 'HGS02_TryToGetNextPacket':
+2026-06-27T02:30:02.3316138Z app/driver/drv_hgs02.c:37:14: warning: unused variable 'checksum' [-Wunused-variable]
+2026-06-27T02:30:02.3316908Z    37 |         byte checksum;
+2026-06-27T02:30:02.3345877Z       |              ^~~~~~~~
+2026-06-27T02:30:02.3366168Z app/driver/drv_hgs02.c:35:13: warning: unused variable 'i' [-Wunused-variable]
+2026-06-27T02:30:02.3395872Z    35 |         int i;
+2026-06-27T02:30:02.3405903Z       |             ^
+2026-06-27T02:30:02.3636154Z app/driver/drv_hlw8112.c: In function 'HLW8112_ClearEnergy':
+2026-06-27T02:30:02.3696291Z app/driver/drv_hlw8112.c:495:17: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+2026-06-27T02:30:02.3697717Z   495 |         channel = Tokenizer_GetArg(0);
+2026-06-27T02:30:02.3755682Z       |                 ^
+2026-06-27T02:30:02.3756408Z app/driver/drv_hlw8112.c: In function 'HLW8112_AppendInformationToHTTPIndexPage':
+2026-06-27T02:30:02.3816030Z app/driver/drv_hlw8112.c:1226:30: warning: unused variable 'comp' [-Wunused-variable]
+2026-06-27T02:30:02.3817008Z  1226 |                         bool comp = http_getArgInteger(request->url, "compliment") ==1;
+2026-06-27T02:30:02.3855976Z       |                              ^~~~
+2026-06-27T02:30:02.3885803Z app/driver/drv_hlw8112.c: At top level:
+2026-06-27T02:30:02.3886624Z   [0;32mCC   app/driver/drv_deye_solarman.c[0m 
+2026-06-27T02:30:02.3906116Z app/driver/drv_hlw8112.c:273:16: warning: 'calcChecksum' defined but not used [-Wunused-function]
+2026-06-27T02:30:02.3936027Z   273 | static uint8_t calcChecksum(uint8_t *data, uint8_t size) {
+2026-06-27T02:30:02.3995788Z       |                ^~~~~~~~~~~~
+2026-06-27T02:30:02.4176451Z   [0;32mCC   app/driver/agriht_license.c[0m 
+2026-06-27T02:30:02.4447778Z   [0;32mCC   app/driver/drv_ht16k33.c[0m 
+2026-06-27T02:30:02.6876683Z   [0;32mCC   app/driver/drv_httpButtons.c[0m 
+2026-06-27T02:30:02.7116113Z   [0;32mCC   app/driver/drv_hue.c[0m 
+2026-06-27T02:30:02.7784290Z   [0;32mCC   app/driver/drv_ir2.c[0m 
+2026-06-27T02:30:02.8276533Z app/driver/drv_hue.c:203:12: warning: 'HUE_GlobalConfig' defined but not used [-Wunused-function]
+2026-06-27T02:30:02.8305943Z   203 | static int HUE_GlobalConfig(http_request_t* request) {
+2026-06-27T02:30:02.8335813Z       |            ^~~~~~~~~~~~~~~~
+2026-06-27T02:30:02.8366161Z app/driver/drv_hue.c:168:12: warning: 'HUE_Authentication' defined but not used [-Wunused-function]
+2026-06-27T02:30:02.8395966Z   168 | static int HUE_Authentication(http_request_t* request) {
+2026-06-27T02:30:02.8425792Z       |            ^~~~~~~~~~~~~~~~~~
+2026-06-27T02:30:02.8456151Z app/driver/drv_hue.c:160:12: warning: 'HUE_NotImplemented' defined but not used [-Wunused-function]
+2026-06-27T02:30:02.8485978Z   160 | static int HUE_NotImplemented(http_request_t* request) {
+2026-06-27T02:30:02.8515829Z       |            ^~~~~~~~~~~~~~~~~~
+2026-06-27T02:30:02.8892605Z app/driver/drv_ir2.c: In function 'CMD_IR2_SendIR2':
+2026-06-27T02:30:02.8916433Z app/driver/drv_ir2.c:224:15: warning: unused variable 'duty_cycle' [-Wunused-variable]
+2026-06-27T02:30:02.8925987Z   224 |         float duty_cycle = 0.330000f;
+2026-06-27T02:30:02.8955786Z       |               ^~~~~~~~~~
+2026-06-27T02:30:02.8976143Z app/driver/drv_ir2.c:223:15: warning: unused variable 'frequency' [-Wunused-variable]
+2026-06-27T02:30:02.9005885Z   223 |         float frequency = 38000;
+2026-06-27T02:30:02.9015835Z       |               ^~~~~~~~~
+2026-06-27T02:30:02.9036040Z app/driver/drv_ir2.c: In function 'CMD_IR2_SetupIR2':
+2026-06-27T02:30:02.9066335Z app/driver/drv_ir2.c:333:25: warning: 'return' with no value, in function returning non-void [-Wreturn-mismatch]
+2026-06-27T02:30:02.9075737Z   333 |                         return;
+2026-06-27T02:30:02.9105796Z       |                         ^~~~~~
+2026-06-27T02:30:02.9126056Z app/driver/drv_ir2.c:268:24: note: declared here
+2026-06-27T02:30:02.9156336Z   268 | static commandResult_t CMD_IR2_SetupIR2(const void* context, const char* cmd, const char* args, int cmdFlags) {
+2026-06-27T02:30:02.9165746Z       |                        ^~~~~~~~~~~~~~~~
+2026-06-27T02:30:02.9196205Z app/driver/drv_ir2.c:335:17: warning: 'return' with no value, in function returning non-void [-Wreturn-mismatch]
+2026-06-27T02:30:02.9215890Z   335 |                 return;
+2026-06-27T02:30:02.9245850Z       |                 ^~~~~~
+2026-06-27T02:30:02.9255898Z app/driver/drv_ir2.c:268:24: note: declared here
+2026-06-27T02:30:02.9276401Z   268 | static commandResult_t CMD_IR2_SetupIR2(const void* context, const char* cmd, const char* args, int cmdFlags) {
+2026-06-27T02:30:02.9305866Z       |                        ^~~~~~~~~~~~~~~~
+2026-06-27T02:30:02.9316088Z app/driver/drv_ir2.c:274:15: warning: unused variable 'duty_off_frac' [-Wunused-variable]
+2026-06-27T02:30:02.9336237Z   274 |         float duty_off_frac = Tokenizer_GetArgFloatDefault(2, 0.0f);
+2026-06-27T02:30:02.9337022Z       |               ^~~~~~~~~~~~~
+2026-06-27T02:30:02.9337832Z app/driver/drv_ir2.c:273:15: warning: unused variable 'duty_on_frac' [-Wunused-variable]
+2026-06-27T02:30:02.9339009Z   273 |         float duty_on_frac = Tokenizer_GetArgFloatDefault(1, 0.5f);
+2026-06-27T02:30:02.9339760Z       |               ^~~~~~~~~~~~
+2026-06-27T02:30:02.9340372Z In file included from app/driver/drv_ir2.c:26:
+2026-06-27T02:30:02.9341158Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h: At top level:
+2026-06-27T02:30:02.9342514Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h:99:15: warning: 'i2c1_open' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:30:02.9406010Z    99 | static UINT32 i2c1_open(UINT32 op_flag);
+2026-06-27T02:30:02.9406783Z       |               ^~~~~~~~~
+2026-06-27T02:30:02.9436415Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h:100:15: warning: 'i2c1_close' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:30:02.9465860Z   100 | static UINT32 i2c1_close(void);
+2026-06-27T02:30:02.9466361Z       |               ^~~~~~~~~~
+2026-06-27T02:30:02.9496359Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h:101:15: warning: 'i2c1_read' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:30:02.9525969Z   101 | static UINT32 i2c1_read(char *user_buf, UINT32 count, UINT32 op_flag);
+2026-06-27T02:30:02.9535772Z       |               ^~~~~~~~~
+2026-06-27T02:30:02.9556355Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h:102:15: warning: 'i2c1_write' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:30:02.9585966Z   102 | static UINT32 i2c1_write(char *user_buf, UINT32 count, UINT32 op_flag);
+2026-06-27T02:30:02.9588767Z   [0;32mCC   app/driver/drv_kp18058.c[0m 
+2026-06-27T02:30:02.9615745Z       |               ^~~~~~~~~~
+2026-06-27T02:30:02.9616977Z ./demos/helloworld/../../beken378/driver/i2c/i2c1.h:103:15: warning: 'i2c1_ctrl' declared 'static' but never defined [-Wunused-function]
+2026-06-27T02:30:02.9618102Z   103 | static UINT32 i2c1_ctrl(UINT32 cmd, void *param);
+2026-06-27T02:30:02.9618648Z       |               ^~~~~~~~~
+2026-06-27T02:30:02.9619313Z app/driver/drv_ir2.c:174:23: warning: 'channel' defined but not used [-Wunused-variable]
+2026-06-27T02:30:02.9620057Z   174 | static uint8_t group, channel;
+2026-06-27T02:30:02.9620607Z       |                       ^~~~~~~
+2026-06-27T02:30:02.9621273Z app/driver/drv_ir2.c:174:16: warning: 'group' defined but not used [-Wunused-variable]
+2026-06-27T02:30:02.9622009Z   174 | static uint8_t group, channel;
+2026-06-27T02:30:02.9622461Z       |                ^~~~~
+2026-06-27T02:30:02.9623109Z app/driver/drv_ir2.c:158:17: warning: 'reg_duty' defined but not used [-Wunused-variable]
+2026-06-27T02:30:02.9623847Z   158 | static uint32_t reg_duty;
+2026-06-27T02:30:02.9624259Z       |                 ^~~~~~~~
+2026-06-27T02:30:02.9624935Z app/driver/drv_ir2.c:156:17: warning: 'ir_periodus' defined but not used [-Wunused-variable]
+2026-06-27T02:30:02.9626615Z   156 | static uint32_t ir_periodus = 50;
+2026-06-27T02:30:02.9627126Z       |                 ^~~~~~~~~~~
+2026-06-27T02:30:02.9706082Z   [0;32mCC   app/driver/drv_kp18068.c[0m 
+2026-06-27T02:30:02.9976030Z   [0;32mCC   app/driver/drv_max6675.c[0m 
+2026-06-27T02:30:03.0276210Z   [0;32mCC   app/driver/drv_max72xx_clock.c[0m 
+2026-06-27T02:30:03.2084706Z   [0;32mCC   app/driver/drv_max72xx_internal.c[0m 
+2026-06-27T02:30:03.2126759Z   [0;32mCC   app/driver/drv_max72xx_single.c[0m 
+2026-06-27T02:30:03.2209253Z   [0;32mCC   app/driver/drv_mcp9808.c[0m 
+2026-06-27T02:30:03.2806438Z   [0;32mCC   app/driver/drv_mqttServer.c[0m 
+2026-06-27T02:30:03.4601755Z   [0;32mCC   app/driver/drv_mqttServerBerry.c[0m 
+2026-06-27T02:30:03.4896268Z   [0;32mCC   app/driver/drv_multiPinI2CScanner.c[0m 
+2026-06-27T02:30:03.4956025Z   [0;32mCC   app/driver/drv_ntp.c[0m 
+2026-06-27T02:30:03.5657051Z   [0;32mCC   app/driver/drv_deviceclock.c[0m 
+2026-06-27T02:30:03.5946650Z app/driver/drv_ntp.c: In function 'NTP_CheckForReceive':
+2026-06-27T02:30:03.6006289Z app/driver/drv_ntp.c:260:16: warning: unused variable 'ltm' [-Wunused-variable]
+2026-06-27T02:30:03.6035884Z   260 |     struct tm *ltm;
+2026-06-27T02:30:03.6065865Z       |                ^~~
+2026-06-27T02:30:03.6666499Z app/driver/drv_deviceclock.c: In function 'SetTimeZoneOfs':
+2026-06-27T02:30:03.6667431Z   [0;32mCC   app/driver/drv_ds3231.c[0m 
+2026-06-27T02:30:03.6696144Z app/driver/drv_deviceclock.c:53:13: warning: unused variable 'oldOfs' [-Wunused-variable]
+2026-06-27T02:30:03.6725838Z    53 |         int oldOfs = g_UTCoffset;
+2026-06-27T02:30:03.6735877Z       |             ^~~~~~
+2026-06-27T02:30:03.6974391Z   [0;32mCC   app/driver/drv_neo6m.c[0m 
+2026-06-27T02:30:03.7043835Z   [0;32mCC   app/driver/drv_DCF77.c[0m 
+2026-06-27T02:30:03.7316562Z   [0;32mCC   app/libraries/obktime/obktime.c[0m 
+2026-06-27T02:30:03.7464692Z   [0;32mCC   app/driver/drv_timed_events.c[0m 
+2026-06-27T02:30:03.8316667Z   [0;32mCC   app/driver/drv_openWeatherMap.c[0m 
+2026-06-27T02:30:03.8897409Z   [0;32mCC   app/driver/drv_pir.c[0m 
+2026-06-27T02:30:04.0068050Z   [0;32mCC   app/driver/drv_pixelAnim.c[0m 
+2026-06-27T02:30:04.0326389Z   [0;32mCC   app/driver/drv_pt6523.c[0m 
+2026-06-27T02:30:04.0656573Z   [0;32mCC   app/driver/drv_pwm_groups.c[0m 
+2026-06-27T02:30:04.0736201Z   [0;32mCC   app/driver/drv_pwmToggler.c[0m 
+2026-06-27T02:30:04.1286623Z   [0;32mCC   app/driver/drv_pwrCal.c[0m 
+2026-06-27T02:30:04.1956518Z   [0;32mCC   app/driver/drv_rn8209.c[0m 
+2026-06-27T02:30:04.2256362Z   [0;32mCC   app/driver/drv_sgp.c[0m 
+2026-06-27T02:30:04.2766366Z   [0;32mCC   app/driver/drv_shiftRegister.c[0m 
+2026-06-27T02:30:04.3292861Z app/driver/drv_sgp.c:158:16: warning: 'SGP_CalcCrc' defined but not used [-Wunused-function]
+2026-06-27T02:30:04.3306019Z   158 | static uint8_t SGP_CalcCrc(uint8_t* data)
+2026-06-27T02:30:04.3335906Z       |                ^~~~~~~~~~~
+2026-06-27T02:30:04.3346225Z app/driver/drv_sgp.c:154:13: warning: 'SGP_Read_IAQ' defined but not used [-Wunused-function]
+2026-06-27T02:30:04.3375864Z   154 | static void SGP_Read_IAQ(float* co2, float* tvoc)
+2026-06-27T02:30:04.3395924Z       |             ^~~~~~~~~~~~
+2026-06-27T02:30:04.3536316Z   [0;32mCC   app/driver/drv_sht3x.c[0m 
+2026-06-27T02:30:04.3855619Z   [0;32mCC   app/driver/drv_sm15155e.c[0m 
+2026-06-27T02:30:04.4796477Z   [0;32mCC   app/driver/drv_sm16703P.c[0m 
+2026-06-27T02:30:04.4890475Z   [0;32mCC   app/driver/drv_simpleEEPROM.c[0m 
+2026-06-27T02:30:04.5836734Z   [0;32mCC   app/driver/drv_leds_shared.c[0m 
+2026-06-27T02:30:04.5883619Z app/driver/drv_simpleEEPROM.c:23:12: warning: 'g_eepBusy' defined but not used [-Wunused-variable]
+2026-06-27T02:30:04.5906054Z    23 | static int g_eepBusy = 0;
+2026-06-27T02:30:04.5925956Z       |            ^~~~~~~~~
+2026-06-27T02:30:04.6763549Z   [0;32mCC   app/driver/drv_ltr_als.c[0m 
+2026-06-27T02:30:04.6866489Z app/driver/drv_leds_shared.c:23:42: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+2026-06-27T02:30:04.6895981Z    23 | enum ColorChannel *color_channel_order = default_color_channel_order;
+2026-06-27T02:30:04.6916150Z       |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+2026-06-27T02:30:04.6925980Z app/driver/drv_leds_shared.c: In function 'Strip_scaleAllPixels':
+2026-06-27T02:30:04.6956032Z app/driver/drv_leds_shared.c:155:22: warning: unused variable 'input' [-Wunused-variable]
+2026-06-27T02:30:04.6985762Z   155 |         byte *data, *input;
+2026-06-27T02:30:04.7005895Z       |                      ^~~~~
+2026-06-27T02:30:04.7014314Z app/driver/drv_leds_shared.c:155:15: warning: unused variable 'data' [-Wunused-variable]
+2026-06-27T02:30:04.7030544Z   [0;32mCC   app/driver/drv_sm2135.c[0m 
+2026-06-27T02:30:04.7036087Z   155 |         byte *data, *input;
+2026-06-27T02:30:04.7066684Z       |               ^~~~
+2026-06-27T02:30:04.7067613Z   [0;32mCC   app/driver/drv_sm2235.c[0m 
+2026-06-27T02:30:04.7096303Z app/driver/drv_leds_shared.c:153:14: warning: unused variable 'b' [-Wunused-variable]
+2026-06-27T02:30:04.7126016Z   153 |         byte b;
+2026-06-27T02:30:04.7156000Z       |              ^
+2026-06-27T02:30:04.7156764Z app/driver/drv_leds_shared.c: In function 'Strip_CMD_setRaw':
+2026-06-27T02:30:04.7186318Z app/driver/drv_leds_shared.c:178:13: warning: variable 'ofs' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:30:04.7215861Z   178 |         int ofs, bPush;
+2026-06-27T02:30:04.7245836Z       |             ^~~
+2026-06-27T02:30:04.7246614Z app/driver/drv_leds_shared.c: In function 'LEDS_ShutdownShared':
+2026-06-27T02:30:04.7276449Z app/driver/drv_leds_shared.c:361:37: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+2026-06-27T02:30:04.7306017Z   361 |                 color_channel_order = default_color_channel_order;
+2026-06-27T02:30:04.7335895Z       |                                     ^
+2026-06-27T02:30:04.7646238Z   [0;32mCC   app/driver/drv_soft_i2c.c[0m 
+2026-06-27T02:30:04.9001989Z   [0;32mCC   app/driver/drv_soft_spi.c[0m 
+2026-06-27T02:30:04.9312684Z   [0;32mCC   app/driver/drv_spi.c[0m 
+2026-06-27T02:30:04.9646396Z   [0;32mCC   app/driver/drv_spiLED.c[0m 
+2026-06-27T02:30:04.9806259Z app/driver/drv_spi.c: In function 'SPI_WriteBytes':
+2026-06-27T02:30:04.9826510Z app/driver/drv_spi.c:192:22: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+2026-06-27T02:30:04.9835833Z   192 |         msg.send_buf = data;
+2026-06-27T02:30:04.9865856Z       |                      ^
+2026-06-27T02:30:04.9885964Z app/driver/drv_spi.c: In function 'SPI_Transmit':
+2026-06-27T02:30:04.9896555Z app/driver/drv_spi.c:263:22: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+2026-06-27T02:30:04.9926055Z   263 |         msg.send_buf = txData;
+2026-06-27T02:30:04.9955874Z       |                      ^
+2026-06-27T02:30:05.0589623Z   [0;32mCC   app/driver/drv_spi_flash.c[0m 
+2026-06-27T02:30:05.0624146Z   [0;32mCC   app/driver/drv_spidma.c[0m 
+2026-06-27T02:30:05.1449805Z   [0;32mCC   app/driver/drv_mdns.c[0m 
+2026-06-27T02:30:05.1869142Z   [0;32mCC   app/driver/drv_ssdp.c[0m 
+2026-06-27T02:30:05.2926696Z app/driver/drv_ssdp.c: In function 'DRV_SSDP_SendReply':
+2026-06-27T02:30:05.2956114Z app/driver/drv_ssdp.c:239:13: warning: variable 'nbytes' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:30:05.2985684Z   239 |         int nbytes;
+2026-06-27T02:30:05.3015637Z       |             ^~~~~~
+2026-06-27T02:30:05.3636333Z   [0;32mCC   app/driver/drv_shutters.c[0m 
+2026-06-27T02:30:05.3696826Z   [0;32mCC   app/driver/drv_ssd1306.c[0m 
+2026-06-27T02:30:05.3737321Z   [0;32mCC   app/driver/drv_tasmotaDeviceGroups.c[0m 
+2026-06-27T02:30:05.4726380Z app/driver/drv_tasmotaDeviceGroups.c: In function 'DGR_FlushSendQueue':
+2026-06-27T02:30:05.4727726Z app/driver/drv_tasmotaDeviceGroups.c:98:13: warning: variable 'nbytes' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:30:05.4755812Z    98 |         int nbytes;
+2026-06-27T02:30:05.4785803Z       |             ^~~~~~
+2026-06-27T02:30:05.4816031Z app/driver/drv_tasmotaDeviceGroups.c: In function 'CMD_DGR_SendRGBCW':
+2026-06-27T02:30:05.4846293Z app/driver/drv_tasmotaDeviceGroups.c:744:29: warning: variable 'r' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:30:05.4875808Z   744 |                         int r;
+2026-06-27T02:30:05.4905790Z       |                             ^
+2026-06-27T02:30:05.4969914Z   [0;32mCC   app/driver/drv_tclAC.c[0m 
+2026-06-27T02:30:05.5326468Z   [0;32mCC   app/driver/drv_test.c[0m 
+2026-06-27T02:30:05.6486615Z   [0;32mCC   app/driver/drv_test_drivers.c[0m 
+2026-06-27T02:30:05.7006581Z   [0;32mCC   app/driver/drv_textScroller.c[0m 
+2026-06-27T02:30:05.7489019Z   [0;32mCC   app/driver/drv_tinyir_nec.c[0m 
+2026-06-27T02:30:05.7743008Z   [0;32mCC   app/driver/drv_tm1637.c[0m 
+2026-06-27T02:30:05.7774626Z   [0;32mCC   app/driver/drv_tm1638.c[0m 
+2026-06-27T02:30:05.8426509Z   [0;32mCC   app/driver/drv_tm_gn_display_shared.c[0m 
+2026-06-27T02:30:05.9156566Z   [0;32mCC   app/driver/drv_girierMCU.c[0m 
+2026-06-27T02:30:05.9786456Z   [0;32mCC   app/driver/drv_tuyaMCU.c[0m 
+2026-06-27T02:30:05.9816566Z   [0;32mCC   app/driver/drv_tuyaMCUSensor.c[0m 
+2026-06-27T02:30:06.0216280Z app/driver/drv_girierMCU.c: In function 'GirierMCU_LinkGirierMCUOutputToChannel':
+2026-06-27T02:30:06.0276271Z app/driver/drv_girierMCU.c:325:21: warning: variable 'dpTypeString' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:30:06.0306058Z   325 |         const char* dpTypeString;
+2026-06-27T02:30:06.0335802Z       |                     ^~~~~~~~~~~~
+2026-06-27T02:30:06.0336336Z app/driver/drv_girierMCU.c: At top level:
+2026-06-27T02:30:06.0337246Z app/driver/drv_girierMCU.c:71:13: warning: 'self_processing_mode' defined but not used [-Wunused-variable]
+2026-06-27T02:30:06.0338210Z    71 | static bool self_processing_mode = true;
+2026-06-27T02:30:06.0338711Z       |             ^~~~~~~~~~~~~~~~~~~~
+2026-06-27T02:30:06.0339527Z app/driver/drv_girierMCU.c:70:13: warning: 'working_mode_valid' defined but not used [-Wunused-variable]
+2026-06-27T02:30:06.0340427Z    70 | static bool working_mode_valid = false;
+2026-06-27T02:30:06.0340905Z       |             ^~~~~~~~~~~~~~~~~~
+2026-06-27T02:30:06.0936341Z app/driver/drv_tuyaMCU.c: In function 'UART_TryToGetNextTuyaPacket':
+2026-06-27T02:30:06.0966234Z app/driver/drv_tuyaMCU.c:382:29: warning: variable 'command' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:30:06.0996072Z   382 |         byte a, b, version, command, lena, lenb;
+2026-06-27T02:30:06.1025797Z       |                             ^~~~~~~
+2026-06-27T02:30:06.1056213Z app/driver/drv_tuyaMCU.c:382:20: warning: variable 'version' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:30:06.1085869Z   382 |         byte a, b, version, command, lena, lenb;
+2026-06-27T02:30:06.1105945Z       |                    ^~~~~~~
+2026-06-27T02:30:06.1146044Z app/driver/drv_tuyaMCU.c: In function 'TuyaMCU_ParseWeatherData':
+2026-06-27T02:30:06.1176185Z app/driver/drv_tuyaMCU.c:1287:14: warning: variable 'bValid' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:30:06.1205869Z  1287 |         byte bValid;
+2026-06-27T02:30:06.1235783Z       |              ^~~~~~
+2026-06-27T02:30:06.1876381Z   [0;32mCC   app/driver/drv_uart.c[0m 
+2026-06-27T02:30:06.2224743Z   [0;32mCC   app/driver/drv_uart_tcp.c[0m 
+2026-06-27T02:30:06.2251523Z   [0;32mCC   app/driver/drv_ucs1912.c[0m 
+2026-06-27T02:30:06.4170825Z   [0;32mCC   app/driver/drv_wemo.c[0m 
+2026-06-27T02:30:06.4722137Z   [0;32mCC   app/driver/drv_widget.c[0m 
+2026-06-27T02:30:06.4754314Z   [0;32mCC   app/i2c/drv_i2c_ads1115.c[0m 
+2026-06-27T02:30:06.5796377Z app/i2c/drv_i2c_ads1115.c: In function 'DRV_I2C_ADS1115_RunDevice':
+2026-06-27T02:30:06.5826705Z app/i2c/drv_i2c_ads1115.c:73:55: warning: passing argument 1 of 'ADS1115_ReadChannel' from incompatible pointer type [-Wincompatible-pointer-types]
+2026-06-27T02:30:06.5845290Z    73 |                         int res = ADS1115_ReadChannel(dev, i);
+2026-06-27T02:30:06.5886014Z       |                                                       ^~~
+2026-06-27T02:30:06.5896008Z       |                                                       |
+2026-06-27T02:30:06.5915948Z       |                                                       i2cDevice_t * {aka struct i2cDevice_s *}
+2026-06-27T02:30:06.5926711Z app/i2c/drv_i2c_ads1115.c:45:46: note: expected 'i2cDevice_ADS1115_t *' {aka 'struct i2cDevice_ADS1115_s *'} but argument is of type 'i2cDevice_t *' {aka 'struct i2cDevice_s *'}
+2026-06-27T02:30:06.5956048Z    45 | int ADS1115_ReadChannel(i2cDevice_ADS1115_t *ads, int channel)
+2026-06-27T02:30:06.5985920Z       |                         ~~~~~~~~~~~~~~~~~~~~~^~~
+2026-06-27T02:30:06.6745863Z   [0;32mCC   app/i2c/drv_i2c_lcd_pcf8574t.c[0m 
+2026-06-27T02:30:06.7016563Z   [0;32mCC   app/i2c/drv_i2c_main.c[0m 
+2026-06-27T02:30:06.7075981Z   [0;32mCC   app/i2c/drv_i2c_mcp23017.c[0m 
+2026-06-27T02:30:06.7766716Z app/i2c/drv_i2c_lcd_pcf8574t.c:177:13: warning: 'PCF8574_LCD_BL' defined but not used [-Wunused-function]
+2026-06-27T02:30:06.7795936Z   177 | static void PCF8574_LCD_BL(i2cDevice_PCF8574_t *lcd, byte status)
+2026-06-27T02:30:06.7825829Z       |             ^~~~~~~~~~~~~~
+2026-06-27T02:30:06.8090286Z app/i2c/drv_i2c_mcp23017.c: In function 'DRV_I2C_MCP23017_RunDevice':
+2026-06-27T02:30:06.8096342Z app/i2c/drv_i2c_mcp23017.c:175:31: warning: variable 'mcp' set but not used [-Wunused-but-set-variable]
+2026-06-27T02:30:06.8126045Z   175 |         i2cDevice_MCP23017_t *mcp;
+2026-06-27T02:30:06.8126722Z       |                               ^~~
+2026-06-27T02:30:06.8155840Z app/i2c/drv_i2c_mcp23017.c: At top level:
+2026-06-27T02:30:06.8186270Z app/i2c/drv_i2c_mcp23017.c:97:13: warning: 'MCP23017_toggleBitPortA' defined but not used [-Wunused-function]
+2026-06-27T02:30:06.8216171Z    97 | static void MCP23017_toggleBitPortA(  i2cDevice_MCP23017_t *mcp, byte bitMask )
+2026-06-27T02:30:06.8217238Z       |             ^~~~~~~~~~~~~~~~~~~~~~~
+2026-06-27T02:30:06.8246246Z app/i2c/drv_i2c_mcp23017.c:93:13: warning: 'MCP23017_writePortA' defined but not used [-Wunused-function]
+2026-06-27T02:30:06.8247384Z    93 | static void MCP23017_writePortA( i2cDevice_MCP23017_t *mcp, byte toWrite )
+2026-06-27T02:30:06.8248088Z       |             ^~~~~~~~~~~~~~~~~~~
+2026-06-27T02:30:06.8756309Z   [0;32mCC   app/i2c/drv_i2c_tc74.c[0m 
+2026-06-27T02:30:06.9416743Z   [0;32mCC   app/../libraries/easyflash/ports/ef_port.c[0m 
+2026-06-27T02:30:06.9676725Z   [0;32mCC   app/../libraries/easyflash/src/easyflash.c[0m 
+2026-06-27T02:30:06.9678022Z   [0;32mCC   app/../libraries/easyflash/src/ef_env.c[0m 
+2026-06-27T02:30:07.0266525Z make[2]: *** No rule to make target 'out/./app/../libraries/berry/src/be_api.app.o', needed by 'libapp.a'.  Stop.
+2026-06-27T02:30:07.0295869Z make[2]: *** Waiting for unfinished jobs....
+2026-06-27T02:30:07.0296817Z   [0;32mCC   app/../libraries/easyflash/src/ef_utils.c[0m 
+2026-06-27T02:30:07.2994579Z make[2]: Leaving directory '/home/runner/work/baken_test/baken_test/sdk/beken_freertos_sdk'
+2026-06-27T02:30:07.3001353Z make[1]: *** [Makefile:157: bk7238] Error 2
+2026-06-27T02:30:07.3002172Z make[1]: Leaving directory '/home/runner/work/baken_test/baken_test/sdk/beken_freertos_sdk'
+2026-06-27T02:30:07.3008990Z Open file ./out/bsp.bin failed
+2026-06-27T02:30:07.3013694Z make: *** [Makefile:710: OpenBK7238] Error 255
+2026-06-27T02:30:07.3030215Z ##[error]Process completed with exit code 2.
+2026-06-27T02:30:07.3168520Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-06-27T02:30:07.3170121Z Post job cleanup.
+2026-06-27T02:30:07.3997537Z [command]/usr/bin/git version
+2026-06-27T02:30:07.4033436Z git version 2.54.0
+2026-06-27T02:30:07.4103921Z Temporarily overriding HOME='/home/runner/work/_temp/1643591f-7253-470e-a713-d4520ef79aae' before making global git config changes
+2026-06-27T02:30:07.4105534Z Adding repository directory to the temporary git global config as a safe directory
+2026-06-27T02:30:07.4109431Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/baken_test/baken_test
+2026-06-27T02:30:07.4146056Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-06-27T02:30:07.4179197Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-06-27T02:30:07.4422964Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-06-27T02:30:07.4446324Z http.https://github.com/.extraheader
+2026-06-27T02:30:07.4457665Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-06-27T02:30:07.4489948Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-06-27T02:30:07.4732454Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-06-27T02:30:07.4763489Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-06-27T02:30:07.5132046Z Cleaning up orphan processes
+2026-06-27T02:30:07.5446890Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

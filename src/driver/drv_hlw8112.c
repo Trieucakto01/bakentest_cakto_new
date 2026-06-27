@@ -86,10 +86,10 @@ static int32_t HLW8112_24BitTo32Bit(uint32_t value) {
 
 #pragma region HLW8112 register lowlevel ops
 
-#if PLATFORM_BEKEN_NEW
+#if HLW8112_SPI_RAWACCESS
 #define HLW8112_USE_SOFT_SPI 1
 #else
-#define HLW8112_USE_SOFT_SPI 0
+#define HLW8112_USE_SOFT_SPI 1
 #endif
 
 #if HLW8112_USE_SOFT_SPI

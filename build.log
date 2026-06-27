@@ -1,0 +1,4 @@
+Build for [0;32mOpenBK7238[0m ...
+./tools/scripts/generate_sys_config.sh: line 14: -r: command not found
+beken378/app/config/sys_config_OpenBK7238.h not exist!
+make: *** [OpenBK7238] Error 1

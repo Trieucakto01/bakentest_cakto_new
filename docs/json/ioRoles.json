@@ -696,6 +696,30 @@
     "driver": "HLW8112SPI"
   },
   {
+    "name": "HLW8112_MISO",
+    "title": "HLW8112 MISO Pin",
+    "descr": "MISO pin for HLW8112 SPI energy measuring devices.",
+    "enum": "IOR_HLW8112_MISO",
+    "file": "new_pins.h",
+    "driver": "HLW8112SPI"
+  },
+  {
+    "name": "HLW8112_MOSI",
+    "title": "HLW8112 MOSI Pin",
+    "descr": "MOSI pin for HLW8112 SPI energy measuring devices.",
+    "enum": "IOR_HLW8112_MOSI",
+    "file": "new_pins.h",
+    "driver": "HLW8112SPI"
+  },
+  {
+    "name": "HLW8112_SCK",
+    "title": "HLW8112 SCK Pin",
+    "descr": "SCK pin for HLW8112 SPI energy measuring devices.",
+    "enum": "IOR_HLW8112_SCK",
+    "file": "new_pins.h",
+    "driver": "HLW8112SPI"
+  },
+  {
     "name": "RCRecv",
     "title": "RCRecv Pin",
     "descr": "433MHz RC receiver input (uses internal pull-up).",

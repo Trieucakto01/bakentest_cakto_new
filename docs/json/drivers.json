@@ -622,6 +622,19 @@
     "define": "Enabled by defining \"<b>ENABLE_DRIVER_UART_TCP</b>\" for your platform in [obk_config.h](https://github.com/openshwprojects/OpenBK7231T_App/blob/main/src/obk_config.h) "
   },
   {
+    "name": "GaitekAC",
+    "title": "GaitekAC",
+    "descr": "TODO",
+    "requires": ""
+  },
+  {
+    "name": "DeyeSolarman",
+    "title": "Deye Solarman V5",
+    "descr": "Minimal Solarman V5 TCP driver for sending Modbus RTU write-register commands to Deye inverters/loggers.",
+    "requires": "",
+    "define": "Enabled by defining \"<b>ENABLE_DRIVER_DEYE_SOLARMAN</b>\" for your platform in [obk_config.h](https://github.com/openshwprojects/OpenBK7231T_App/blob/main/src/obk_config.h) "
+  },
+  {
     "name": "TXWCAM",
     "title": "TODO",
     "descr": "TXW81X Camera.",
