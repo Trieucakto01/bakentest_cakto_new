@@ -867,11 +867,11 @@ int HLW8112_InitReg(void) {
 
 	device.ScaleFactor.v_rms = 1.0;
 	device.ScaleFactor.freq = 1.0;
+	device.ScaleFactor.pf = 1.0;
 	device.ScaleFactor.a.i = 1.0;
 	device.ScaleFactor.a.p = 1.0;
 	device.ScaleFactor.a.e = 1.0;
 	device.ScaleFactor.a.ap = 1.0;
-	device.ScaleFactor.b.u = 1.0;
 	device.ScaleFactor.b.i = 1.0;
 	device.ScaleFactor.b.p = 1.0;
 	device.ScaleFactor.b.e = 1.0;
