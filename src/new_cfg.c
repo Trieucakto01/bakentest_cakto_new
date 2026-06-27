@@ -175,7 +175,7 @@ void CFG_SetDefaultConfig() {
 	g_cfg.pins.roles[17] = IOR_HLW8112_MISO;
 	g_cfg.pins.roles[21] = IOR_HLW8112_SCSN;
 
-	strcpy(g_cfg.shortStartupCommand, "startDriver HLW8112SPI; HLW8112_SetResistorGain 1.0 0.2267 1.0");
+	strcpy(g_cfg.initCommandLine, "startDriver HLW8112SPI; HLW8112_SetResistorGain 1.0 0.2267 1.0");
 	// -----------------------------------------------------
 
 	g_cfg_pendingChanges++;
