@@ -616,6 +616,27 @@ typedef enum ioRole_e {
 	//iodetail:"file":"new_pins.h",
 	//iodetail:"driver":"HLW8112SPI"}
 	IOR_HLW8112_SCSN,
+	//iodetail:{"name":"HLW8112_MISO",
+	//iodetail:"title":"HLW8112 MISO Pin",
+	//iodetail:"descr":"MISO pin for HLW8112 SPI energy measuring devices.",
+	//iodetail:"enum":"IOR_HLW8112_MISO",
+	//iodetail:"file":"new_pins.h",
+	//iodetail:"driver":"HLW8112SPI"}
+	IOR_HLW8112_MISO,
+	//iodetail:{"name":"HLW8112_MOSI",
+	//iodetail:"title":"HLW8112 MOSI Pin",
+	//iodetail:"descr":"MOSI pin for HLW8112 SPI energy measuring devices.",
+	//iodetail:"enum":"IOR_HLW8112_MOSI",
+	//iodetail:"file":"new_pins.h",
+	//iodetail:"driver":"HLW8112SPI"}
+	IOR_HLW8112_MOSI,
+	//iodetail:{"name":"HLW8112_SCK",
+	//iodetail:"title":"HLW8112 SCK Pin",
+	//iodetail:"descr":"SCK pin for HLW8112 SPI energy measuring devices.",
+	//iodetail:"enum":"IOR_HLW8112_SCK",
+	//iodetail:"file":"new_pins.h",
+	//iodetail:"driver":"HLW8112SPI"}
+	IOR_HLW8112_SCK,
 	//iodetail:{"name":"RCRecv",
 	//iodetail:"title":"RCRecv Pin",
 	//iodetail:"descr":"433MHz RC receiver input (uses internal pull-up).",

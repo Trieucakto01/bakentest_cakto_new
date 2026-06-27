@@ -132,7 +132,15 @@ static uint8_t hlw_soft_spi_read() {
 	return data;
 }
 
-static void hlw_soft_spi_init() {
+static void hlw_soft_spi_init(void) {
+	int tmp;
+	tmp = PIN_FindPinIndexForRole(IOR_HLW8112_SCK, -1);
+	if (tmp != -1) spi_sck_pin = tmp;
+	tmp = PIN_FindPinIndexForRole(IOR_HLW8112_MISO, -1);
+	if (tmp != -1) spi_miso_pin = tmp;
+	tmp = PIN_FindPinIndexForRole(IOR_HLW8112_MOSI, -1);
+	if (tmp != -1) spi_mosi_pin = tmp;
+
 	HAL_PIN_Setup_Output(spi_sck_pin);
 	HAL_PIN_Setup_Input(spi_miso_pin);
 	HAL_PIN_Setup_Output(spi_mosi_pin);

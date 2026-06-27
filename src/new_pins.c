@@ -482,7 +482,10 @@ int PIN_IOR_NofChan(int test){
 			|| test == IOR_RCRecv || test == IOR_RCRecv_nPup || test == IOR_IRRecv_nPup
 			|| (test >= IOR_IRRecv && test <= IOR_DHT11)
 			|| (test >= IOR_SM2135_DAT && test <= IOR_BP1658CJ_CLK)
-			|| (test == IOR_HLW8112_SCSN)) {
+			|| (test == IOR_HLW8112_SCSN)
+			|| (test == IOR_HLW8112_MISO)
+			|| (test == IOR_HLW8112_MOSI)
+			|| (test == IOR_HLW8112_SCK)) {
 			return 0;
 	}
 	// all others have 1 channel
