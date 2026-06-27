@@ -161,9 +161,12 @@ int HLW8112_SPI_ReadBytes(uint8_t *buffer, uint32_t size) {
 	int Result;
 #if HLW8112_USE_SOFT_SPI
 	uint32_t i;
+	GLOBAL_INT_DECLARATION();
+	GLOBAL_INT_DISABLE();
 	for (i = 0; i < size; i++) {
 		buffer[i] = hlw_soft_spi_read();
 	}
+	GLOBAL_INT_RESTORE();
 	Result = 0;
 #else
 	Result = SPI_ReadBytes(buffer, size);
@@ -176,9 +179,12 @@ int HLW8112_SPI_WriteBytes(uint8_t *data, uint32_t size) {
 	int Result;
 #if HLW8112_USE_SOFT_SPI
 	uint32_t i;
+	GLOBAL_INT_DECLARATION();
+	GLOBAL_INT_DISABLE();
 	for (i = 0; i < size; i++) {
 		hlw_soft_spi_send(data[i]);
 	}
+	GLOBAL_INT_RESTORE();
 	Result = 0;
 #else
   	Result = SPI_WriteBytes(data, size);
@@ -194,12 +200,15 @@ int HLW8112_SPI_Transact(uint8_t *txBuffer, uint32_t txSize, uint8_t *rxBuffer, 
 #endif
   	HLW8112_SPI_Txn_Begin();
 #if HLW8112_USE_SOFT_SPI
+	GLOBAL_INT_DECLARATION();
+	GLOBAL_INT_DISABLE();
 	for (i = 0; i < txSize; i++) {
 		hlw_soft_spi_send(txBuffer[i]);
 	}
 	for (i = 0; i < rxSize; i++) {
 		rxBuffer[i] = hlw_soft_spi_read();
 	}
+	GLOBAL_INT_RESTORE();
 	Result = 0;
 #else
   	Result = SPI_Transmit(txBuffer, txSize, rxBuffer, rxSize);
