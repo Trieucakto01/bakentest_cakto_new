@@ -18,7 +18,7 @@ void HLW8112_OnHassDiscovery(const char *topic);
 void HLW8112_AppendInformationToHTTPIndexPage(http_request_t *request, int bPreState);
 
 //for external use fill force write to flash if driver is running
-void HLW8112_Save_Statistics();
+void HLW8112_Save_Statistics(void);
 
 #pragma region util macros
 
@@ -227,7 +227,7 @@ typedef enum {
   	HLW8112_PGA_2 = 1,
   	HLW8112_PGA_4 = 2,
   	HLW8112_PGA_8 = 3,
-  	HLW8112_PGA_16 = 4,
+  	HLW8112_PGA_16 = 4
 } HLW8112_PGA_t;
 
 typedef enum {
@@ -302,7 +302,7 @@ typedef enum {
   	HLW8112_SAVE_B_EXP = 8,
   	HLW8112_SAVE_B = 12,
   	HLW8112_SAVE_ALL = 15,
-  	HLW8112_SAVE_FORCE = 16,
+  	HLW8112_SAVE_FORCE = 16
 } HLW8112_SaveFlag_t;
 
 typedef uint16_t HLW8112_SaveFlags_t;
@@ -429,7 +429,7 @@ typedef enum  {
   	HLW8112_Channel_export_A = 8,
   	HLW8112_Channel_export_B = 9,
   	HLW8112_Channel_import_A = 10,
-  	HLW8112_Channel_import_B = 11,
+  	HLW8112_Channel_import_B = 11
 //	HLW8112_Channel_ResCof_Voltage = 12,
 //	HLW8112_Channel_ResCof_A = 13,
 //	HLW8112_Channel_ResCof_B = 14,
@@ -437,10 +437,10 @@ typedef enum  {
 } HLW8112_Device_channels;
 
 
-void HLW8112_compute_scale_factor();
+void HLW8112_compute_scale_factor(void);
 void HLW8112_ScaleEnergy(HLW8112_Channel_t channel, uint32_t regValue, int32_t* value);
-int HLW8112_CheckCoeffs();
-int HLW8112_UpdateCoeff();
+int HLW8112_CheckCoeffs(void);
+int HLW8112_UpdateCoeff(void);
 
 #endif // __DRV_HLW8112_H__
 

@@ -316,11 +316,11 @@ uint8_t HLW8112_SPI_WriteControl(uint8_t control) {
   	return HLW8112_WriteRegisterValue8(HLW8112_REG_COMMAND, control);
 }
 
-int writeEnable() {
+int writeEnable(void) {
   	return HLW8112_SPI_WriteControl(HLW8112_COMMAND_WRITE_EN);
 }
 
-int writeDisable() {
+int writeDisable(void) {
   	return HLW8112_SPI_WriteControl(HLW8112_COMMAND_WRITE_PROTECT);
 }
 
@@ -642,10 +642,10 @@ void HLW8112_addCommads(void){
 
 #pragma region HLW8112 init
 
-void HLW8112_Shutdown_Pins() {
+void HLW8112_Shutdown_Pins(void) {
 
 }
-void HLW8112_Init_Channels() {
+void HLW8112_Init_Channels(void) {
 	CHANNEL_SetType(HLW8112_Channel_Voltage, ChType_Voltage_div100);
 	CHANNEL_SetType(HLW8112_Channel_Frequency, ChType_Frequency_div100);
 	CHANNEL_SetType(HLW8112_Channel_PowerFactor, ChType_PowerFactor_div1000);
@@ -680,7 +680,7 @@ void HLW8112_Init_Channels() {
 
 }
 
-void HLW8112_Init_Pins() {
+void HLW8112_Init_Pins(void) {
 
 	//TODO INT1/INT2
   	int tmp;
@@ -710,7 +710,7 @@ int HLW8112_UpdateCoeffFromRegister(uint16_t reg, uint16_t* sink, char* name) {
 	return 0;
 }
 
-void HLW8112_compute_scale_factor() {
+void HLW8112_compute_scale_factor(void) {
 	double k2 = device.ResistorCoeff.KU;
 	double k1a = device.ResistorCoeff.KIA;
 	double k1b = device.ResistorCoeff.KIB;
@@ -745,7 +745,7 @@ void HLW8112_compute_scale_factor() {
 	
 }
 
-int HLW8112_UpdateCoeff() {
+int HLW8112_UpdateCoeff(void) {
 	CHECK_AND_RETURN(HLW8112_UpdateCoeffFromRegister(HLW8112_REG_HFCONST, &device.HFconst, "HLW8112_REG_HFCONST"));
 	CHECK_AND_RETURN(HLW8112_UpdateCoeffFromRegister(HLW8112_REG_RMSIAC, &device.DeviceRegisterCoeff.RmsIAC, "HLW8112_REG_RMSIAC"));
 	CHECK_AND_RETURN(HLW8112_UpdateCoeffFromRegister(HLW8112_REG_RMSIBC, &device.DeviceRegisterCoeff.RmsIBC, "HLW8112_REG_RMSIBC"));
@@ -759,7 +759,7 @@ int HLW8112_UpdateCoeff() {
 	return 0;
 }
 
-int HLW8112_CheckCoeffs() {
+int HLW8112_CheckCoeffs(void) {
 	uint16_t regValue;
   	int cmdResult;
   	uint16_t checksum = 0xFFFF 
@@ -803,7 +803,7 @@ int HLW8112_SetMainChannel(HLW8112_Channel_t channel) {
 }
 
 
-int HLW8112_InitReg() {
+int HLW8112_InitReg(void) {
 	int cmdResult;
 	uint16_t PGA = HLW8112_PGA_16;
   	uint16_t PGB = HLW8112_PGA_16;
@@ -1353,7 +1353,7 @@ void HLW8112_OnHassDiscovery(const char *topic) {
 	hass_free_device_info(dev_info);
 }
 
-void HLW8112_Save_Statistics() {
+void HLW8112_Save_Statistics(void) {
 	if (DRV_IsRunning("HLW8112SPI")){
 		HLW8112_save_stats(HLW8112_SAVE_FORCE);
 	}
