@@ -164,6 +164,20 @@ void CFG_SetDefaultConfig() {
 	CFG_SetDisableWebServer(0);
 #endif
 
+	// --- CUSTOM DEFAULT CONFIGURATION cho mạch của bạn ---
+	g_cfg.pins.roles[6] = IOR_Button;
+	g_cfg.pins.channels[6] = 0;
+	
+	g_cfg.pins.roles[8] = IOR_WiFi_LED_n;
+	
+	g_cfg.pins.roles[14] = IOR_HLW8112_SCK;
+	g_cfg.pins.roles[16] = IOR_HLW8112_MOSI;
+	g_cfg.pins.roles[17] = IOR_HLW8112_MISO;
+	g_cfg.pins.roles[21] = IOR_HLW8112_SCSN;
+
+	strcpy(g_cfg.shortStartupCommand, "startDriver HLW8112SPI; HLW8112_SetResistorGain 1.0 0.2267 1.0");
+	// -----------------------------------------------------
+
 	g_cfg_pendingChanges++;
 }
 
