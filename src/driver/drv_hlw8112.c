@@ -208,6 +208,7 @@ int HLW8112_ReadRegister(uint8_t reg, uint8_t size, uint32_t *valueResult) {
   	uint8_t tx[1] = {0xFF};
   	uint8_t rx[5] = {0};
 	int result;
+	uint32_t value = 0x0;
   	tx[0] = reg & 0x7F;
   	
 	result = HLW8112_SPI_Transact(tx, 1, rx, 5);
@@ -216,8 +217,6 @@ int HLW8112_ReadRegister(uint8_t reg, uint8_t size, uint32_t *valueResult) {
     	return result;
   	}
   	HLW8112_Print_Array(rx, 5);
-  
-	uint32_t value = 0x0;
   	if (size == 4) {
     	value = ((uint32_t)rx[0] << 24) | ((uint32_t)rx[1] << 16) | ((uint32_t)rx[2] << 8) | ((uint32_t)rx[3]);
   	} else if (size == 3) {
