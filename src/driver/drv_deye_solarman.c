@@ -415,7 +415,7 @@ static int Deye_Transaction(const byte *modbus, int modbusLen, int function, int
 	setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
 
 	resolved = inet_addr(g_deye_ip);
-	if (resolved == INADDR_NONE) {
+	if (resolved == 0xFFFFFFFF) {
 		struct hostent *he = gethostbyname(g_deye_ip);
 		if (he && he->h_addr_list && he->h_addr_list[0]) {
 			resolved = *(uint32_t *)he->h_addr_list[0];
