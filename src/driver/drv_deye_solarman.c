@@ -886,38 +886,13 @@ static void Deye_RunDiscoverStep(void) {
 			}
 			continue;
 		}
-		if (g_deye_discover_host <= 3) {
-			char host[32];
-			if (g_deye_discover_host == 1) {
-				snprintf(host, sizeof(host), "%u", (unsigned int)g_deye_logger_serial);
-			} else if (g_deye_discover_host == 2) {
-				snprintf(host, sizeof(host), "WIFI-%u", (unsigned int)g_deye_logger_serial);
-			} else {
-				snprintf(host, sizeof(host), "AP_%u", (unsigned int)g_deye_logger_serial);
-			}
-			g_deye_discover_host++;
-			struct hostent *he = gethostbyname(host);
-			if (he && he->h_addr_list && he->h_addr_list[0]) {
-				uint8_t *a = (uint8_t *)he->h_addr_list[0];
-				snprintf(ip, sizeof(ip), "%u.%u.%u.%u", a[0], a[1], a[2], a[3]);
-				rc = Deye_CheckSerialAt(ip, 800);
-				if (rc == 0) {
-					snprintf(g_deye_ip, sizeof(g_deye_ip), "%s", ip);
-					g_deye_discover_active = 0;
-					g_deye_discover_found = 1;
-					g_deye_ip_confirmed = 1;
-					ADDLOG_INFO(LOG_FEATURE_DRV, "DeyeSolarman DISCOVER found by hostname %s=%s", host, ip);
-					return;
-				}
-			}
-			continue;
-		}
+
 		if (g_deye_discover_host > 256) {
 			g_deye_discover_active = 0;
 			ADDLOG_ERROR(LOG_FEATURE_DRV, "DeyeSolarman DISCOVER done: no logger found on subnet");
 			return;
 		}
-		Deye_BuildSubnetIP(g_deye_discover_host - 3, ip, sizeof(ip));
+		Deye_BuildSubnetIP(g_deye_discover_host, ip, sizeof(ip));
 		g_deye_discover_host++;
 		if (!strcmp(ip, HAL_GetMyIPString())) continue;
 
