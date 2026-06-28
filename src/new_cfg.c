@@ -166,7 +166,7 @@ void CFG_SetDefaultConfig() {
 
 	// --- CUSTOM DEFAULT CONFIGURATION cho mạch của bạn ---
 	g_cfg.pins.roles[6] = IOR_Button;
-	g_cfg.pins.channels[6] = 0;
+	g_cfg.pins.channels[6] = 63;
 	
 	g_cfg.pins.roles[8] = IOR_LED_WIFI_n;
 	

@@ -1138,11 +1138,18 @@ static commandResult_t Deye_CMD_Setup(const void *context, const char *cmd, cons
 }
 
 static commandResult_t Deye_CMD_Save(const void *context, const char *cmd, const char *args, int flags) {
-	char startup[128];
-	Deye_BuildStartupCommand(startup, sizeof(startup));
-	CFG_SetShortStartupCommand(startup);
+	char new_deye[128];
+	char final_cmd[256];
+	Deye_BuildStartupCommand(new_deye, sizeof(new_deye));
+	const char *current = CFG_GetShortStartupCommand();
+	if (current && strstr(current, "startDriver HLW8112SPI")) {
+		snprintf(final_cmd, sizeof(final_cmd), "startDriver HLW8112SPI; HLW8112_SetResistorGain 1.0 0.2267 1.0; %s", new_deye);
+	} else {
+		strncpy(final_cmd, new_deye, sizeof(final_cmd));
+	}
+	CFG_SetShortStartupCommand(final_cmd);
 	CFG_Save_IfThereArePendingChanges();
-	ADDLOG_INFO(LOG_FEATURE_CMD, "DeyeSolarman saved startup: %s", startup);
+	ADDLOG_INFO(LOG_FEATURE_CMD, "DeyeSolarman saved startup: %s", final_cmd);
 	return CMD_RES_OK;
 }
 

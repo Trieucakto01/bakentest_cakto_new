@@ -80,8 +80,8 @@ void OTA_RequestDownloadFromHTTP(const char *s);
 #define MANUFACTURER "Beken Corporation"
 #define DEF_MQTT_GROUP "bekens_n"
 #elif PLATFORM_BK7231T
-#define DEVICENAME_PREFIX_FULL "OpenBK7231T"
-#define DEVICENAME_PREFIX_SHORT "obk"
+#define DEVICENAME_PREFIX_FULL "ZN_"
+#define DEVICENAME_PREFIX_SHORT "ZN"
 #define PLATFORM_MCU_NAME "BK7231T"
 #define MANUFACTURER "Beken Corporation"
 #define DEF_MQTT_GROUP "bekens_t"
