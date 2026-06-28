@@ -93,7 +93,7 @@ UINT32 flash_ctrl(UINT32 cmd, void *parm) {
 		flash_otp_t *param = (flash_otp_t *)parm;
 		if (param && param->buf) {
 			memset(param->buf, 0xAB, param->len);
-			return 0;
+			return param->len;
 		}
 	}
 	return 0;

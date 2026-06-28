@@ -61,7 +61,7 @@ void AgriHTLicense_Init(void) {
 	param.buf = uid;
 	param.addr = 0;
 	param.len = 16;
-	if (flash_ctrl(CMD_FLASH_GET_UID, &param) == 0) {
+	if (flash_ctrl(CMD_FLASH_GET_UID, &param) == 16) {
 		int i;
 		for (i = 0; i < 16; i++) {
 			if (uid[i] != 0x00 && uid[i] != 0xFF) {
