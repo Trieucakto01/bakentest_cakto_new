@@ -41,11 +41,52 @@ static uint64_t siphash24(const byte *data, int len) {
 	return v0 ^ v1 ^ v2 ^ v3;
 }
 
+#if defined(PLATFORM_BK7231T) || defined(PLATFORM_BK7231N) || defined(PLATFORM_BK7238) || defined(PLATFORM_BK7252) || defined(WINDOWS)
+extern unsigned int flash_ctrl(unsigned int cmd, void *parm);
+#define CMD_FLASH_GET_UID 54
+typedef struct {
+    unsigned char *buf;
+    unsigned int addr;
+    unsigned int len;
+} temp_flash_otp_t;
+#endif
+
 void AgriHTLicense_Init(void) {
 	byte mac[6];
-	WiFI_GetMacAddress((char *)mac);
-	snprintf(g_device_id, sizeof(g_device_id), "%02X%02X%02X%02X%02X%02X",
-		mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+	int uid_valid = 0;
+	uint8_t uid[16] = {0};
+
+#if defined(PLATFORM_BK7231T) || defined(PLATFORM_BK7231N) || defined(PLATFORM_BK7238) || defined(PLATFORM_BK7252) || defined(WINDOWS)
+	temp_flash_otp_t param;
+	param.buf = uid;
+	param.addr = 0;
+	param.len = 16;
+	if (flash_ctrl(CMD_FLASH_GET_UID, &param) == 0) {
+		int i;
+		for (i = 0; i < 16; i++) {
+			if (uid[i] != 0x00 && uid[i] != 0xFF) {
+				uid_valid = 1;
+				break;
+			}
+		}
+	}
+#endif
+
+	if (uid_valid) {
+		uint64_t uid_hash = siphash24((const byte *)uid, 16);
+		snprintf(g_device_id, sizeof(g_device_id), "%02X%02X%02X%02X%02X%02X",
+			(unsigned int)((uid_hash >> 40) & 0xFF),
+			(unsigned int)((uid_hash >> 32) & 0xFF),
+			(unsigned int)((uid_hash >> 24) & 0xFF),
+			(unsigned int)((uid_hash >> 16) & 0xFF),
+			(unsigned int)((uid_hash >> 8) & 0xFF),
+			(unsigned int)(uid_hash & 0xFF));
+	} else {
+		WiFI_GetMacAddress((char *)mac);
+		snprintf(g_device_id, sizeof(g_device_id), "%02X%02X%02X%02X%02X%02X",
+			mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+	}
+
 	g_license_key[0] = 0;
 	g_license_active = 0;
 }

@@ -47,7 +47,8 @@ enum
     CMD_FLASH_ERASE_SECTOR,
 	CMD_FLASH_SET_HPM,
     CMD_FLASH_SET_PROTECT,
-    CMD_FLASH_GET_PROTECT
+    CMD_FLASH_GET_PROTECT,
+    CMD_FLASH_GET_UID
 };
 
 typedef enum
@@ -69,6 +70,12 @@ typedef struct
     UINT8 byte;
     UINT16 value;
 } flash_sr_t;
+
+typedef struct {
+    UINT8 *buf;
+    UINT32 addr;
+    UINT32 len;
+} flash_otp_t;
 
 /*******************************************************************************
 * Function Declarations

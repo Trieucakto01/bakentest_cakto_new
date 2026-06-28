@@ -89,6 +89,13 @@ UINT32 flash_write(char *user_buf, UINT32 count, UINT32 address) {
 	return 0;
 }
 UINT32 flash_ctrl(UINT32 cmd, void *parm) {
+	if (cmd == CMD_FLASH_GET_UID) {
+		flash_otp_t *param = (flash_otp_t *)parm;
+		if (param && param->buf) {
+			memset(param->buf, 0xAB, param->len);
+			return 0;
+		}
+	}
 	return 0;
 }
 
