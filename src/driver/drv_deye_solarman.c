@@ -27,11 +27,13 @@ static int g_deye_update_seconds = 2;
 static int g_deye_fixed_enabled = 0;
 static int g_deye_auto_enabled = 1;
 static int g_deye_seconds_until_send = 0;
-static int g_deye_grid_channel = 5;
+static int g_deye_grid_invert = 0;
 static int g_deye_voltage_channel = -1;
 static int g_deye_current_channel = -1;
+static int g_deye_grid_channel = -1;
+static int g_deye_freq_channel = -1;
+static int g_deye_pf_channel = -1;
 static int g_deye_auto_detect_channels = 1;
-static int g_deye_grid_invert = 0;
 static int g_deye_rated_w = 800;
 static int g_deye_target_grid_w = 30;
 static int g_deye_export_limit_w = -20;
@@ -46,6 +48,8 @@ static int g_deye_last_grid_w = 0;
 static int g_deye_last_voltage_v = 0;
 static int g_deye_last_current_ma = 0;
 static int g_deye_last_apparent_w = 0;
+static float g_deye_last_freq_hz = 0.0f;
+static float g_deye_last_pf = 0.0f;
 static int g_deye_discover_active = 0;
 static int g_deye_discover_host = 1;
 static int g_deye_discover_found = 0;
@@ -556,8 +560,8 @@ static int Deye_CheckSerialAt(const char *ip, int connectTimeoutMs) {
 	sock = socket(AF_INET, SOCK_STREAM, 0);
 	if (sock < 0) return -3;
 
-	tv.tv_sec = 1;
-	tv.tv_usec = 0;
+	tv.tv_sec = 0;
+	tv.tv_usec = 250000;
 	setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
 	setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
 
@@ -643,6 +647,8 @@ static void Deye_AutoDetectMeasurementChannels(void) {
 	int activePowerCh = -1;
 	int voltageCh = -1;
 	int currentCh = -1;
+	int freqCh = -1;
+	int pfCh = -1;
 
 	if (!g_deye_auto_detect_channels) return;
 	for (ch = 0; ch < CHANNEL_MAX; ch++) {
@@ -656,6 +662,12 @@ static void Deye_AutoDetectMeasurementChannels(void) {
 		if (currentCh < 0 && Deye_IsCurrentType(type)) {
 			currentCh = ch;
 		}
+		if (freqCh < 0 && type == ChType_Frequency_div100) {
+			freqCh = ch;
+		}
+		if (pfCh < 0 && type == ChType_PowerFactor_div1000) {
+			pfCh = ch;
+		}
 	}
 	if (g_deye_grid_channel < 0 && activePowerCh >= 0) {
 		g_deye_grid_channel = activePowerCh;
@@ -668,6 +680,12 @@ static void Deye_AutoDetectMeasurementChannels(void) {
 	if (currentCh >= 0 && currentCh != g_deye_current_channel) {
 		g_deye_current_channel = currentCh;
 		ADDLOG_INFO(LOG_FEATURE_DRV, "DeyeSolarman AUTO-DETECT current channel=%i", g_deye_current_channel);
+	}
+	if (freqCh >= 0 && freqCh != g_deye_freq_channel) {
+		g_deye_freq_channel = freqCh;
+	}
+	if (pfCh >= 0 && pfCh != g_deye_pf_channel) {
+		g_deye_pf_channel = pfCh;
 	}
 }
 
@@ -684,6 +702,12 @@ static int Deye_ReadGridPowerW(void) {
 	if (g_deye_current_channel >= 0) {
 		current = CHANNEL_GetFinalValue(g_deye_current_channel);
 		g_deye_last_current_ma = (int)(current * 1000.0f);
+	}
+	if (g_deye_freq_channel >= 0) {
+		g_deye_last_freq_hz = CHANNEL_GetFinalValue(g_deye_freq_channel);
+	}
+	if (g_deye_pf_channel >= 0) {
+		g_deye_last_pf = CHANNEL_GetFinalValue(g_deye_pf_channel);
 	}
 	if (g_deye_grid_channel >= 0) {
 		gridW = (int)CHANNEL_GetFinalValue(g_deye_grid_channel);
@@ -835,7 +859,7 @@ static void Deye_RunDiscoverStep(void) {
 		return;
 	}
 
-	for (attempts = 0; attempts < 4 && g_deye_discover_active; attempts++) {
+	for (attempts = 0; attempts < 8 && g_deye_discover_active; attempts++) {
 		if (g_deye_discover_try_saved_ip || g_deye_discover_saved_retry_seconds <= 0) {
 			g_deye_discover_try_saved_ip = 0;
 			g_deye_discover_saved_retry_seconds = 5;
@@ -1490,7 +1514,7 @@ static void Deye_HTTP_PrintSetupForm(http_request_t *request) {
 	poststr(request, "fetch('/cm?cmnd='+encodeURIComponent(c)).then(()=>s?fetch('/cm?cmnd='+encodeURIComponent('Deye save')):0).then(()=>{ze_msg.innerText=s?'Saved':'Applied';zePoll()})}");
 	poststr(request, "function zePoll(){fetch('/deye').then(r=>r.json()).then(j=>{");
 	poststr(request, "zeSet('ze_grid',j.grid+' W');zeSet('ze_target_m',j.target+' W');zeSet('ze_limit',j.limit+' %');zeSet('ze_v',j.voltage+' V');zeSet('ze_i',j.current+' mA');");
-	poststr(request, "zeSet('ze_app',j.apparent+' VA');zeSet('ze_rated_m',j.rated+' W');zeSet('ze_link',j.link);zeSet('ze_badge',j.link);zeSet('ze_flow',j.flow);zeSet('ze_ip',j.ip+':'+j.port);zeSet('ze_lastrc',j.lastRc+' '+j.lastText);zeSet('ze_sends',j.sends);zeSet('ze_fail',j.fail);");
+	poststr(request, "zeSet('ze_app',j.apparent+' VA');zeSet('ze_freq',j.freq+' Hz');zeSet('ze_pf',j.pf);zeSet('ze_rated_m',j.rated+' W');zeSet('ze_link',j.link);zeSet('ze_badge',j.link);zeSet('ze_flow',j.flow);zeSet('ze_ip',j.ip+':'+j.port);zeSet('ze_lastrc',j.lastRc+' '+j.lastText);zeSet('ze_sends',j.sends);zeSet('ze_fail',j.fail);");
 	poststr(request, "zeSet('ze_license',j.licensed?'ACTIVE':'LOCKED');");
 	poststr(request, "var l=document.getElementById('ze_link'),b=document.getElementById('ze_badge'),f=document.getElementById('ze_flow');var c=j.link=='OK'?'zeok':(j.link=='ERROR'?'zeerr':'zewait');if(l)l.className=c;if(b)b.className='zebadge '+c;if(f)f.className='zeflow ze'+j.flow.toLowerCase()})}");
 	poststr(request, "setInterval(zePoll,1000);zePoll();");
@@ -1511,6 +1535,8 @@ static void Deye_HTTP_PrintPanel(http_request_t *request) {
 	Deye_HTTP_PrintMetric(request, "ze_v", "Voltage", "%i V", g_deye_last_voltage_v, 0);
 	Deye_HTTP_PrintMetric(request, "ze_i", "Current", "%i mA", g_deye_last_current_ma, 0);
 	Deye_HTTP_PrintMetric(request, "ze_app", "Apparent", "%i VA", g_deye_last_apparent_w, 0);
+	hprintf255(request, "<div class='zem'><div class='zel'>Frequency</div><div class='zev'><span id='ze_freq'>%.2f Hz</span></div></div>", g_deye_last_freq_hz);
+	hprintf255(request, "<div class='zem'><div class='zel'>Power Factor</div><div class='zev'><span id='ze_pf'>%.3f</span></div></div>", g_deye_last_pf);
 	hprintf255(request, "<div class='zem'><div class='zel'>Deye Link</div><div class='zev'><span id='ze_link'>%s</span></div></div>", Deye_LinkText());
 	poststr(request, "</div>");
 	hprintf255(request, "<div class='zest'>Deye <span id='ze_ip'>%s:%i</span> SN %u, auto=%i, ipOK=%i, discover=%i, chP=%i chV=%i chI=%i, last=<span id='ze_lastrc'>%i %s</span>, sends=<span id='ze_sends'>%u</span>, fail=<span id='ze_fail'>%i</span></div>",
@@ -1529,8 +1555,8 @@ static int Deye_HTTP_GetJson(http_request_t *request) {
 	hprintf255(request, "{\"grid\":%i,\"target\":%i,\"exportLimit\":%i,\"limit\":%i,\"voltage\":%i,\"current\":%i,",
 		g_deye_last_grid_w, g_deye_target_grid_w, g_deye_export_limit_w, g_deye_auto_percent,
 		g_deye_last_voltage_v, g_deye_last_current_ma);
-	hprintf255(request, "\"apparent\":%i,\"lastPercent\":%i,\"rated\":%i,",
-		g_deye_last_apparent_w, g_deye_last_percent, g_deye_rated_w);
+	hprintf255(request, "\"apparent\":%i,\"lastPercent\":%i,\"rated\":%i,\"freq\":%.2f,\"pf\":%.3f,",
+		g_deye_last_apparent_w, g_deye_last_percent, g_deye_rated_w, g_deye_last_freq_hz, g_deye_last_pf);
 	hprintf255(request, "\"lastRc\":%i,\"sends\":%u,\"sn\":%u,\"fail\":%i,",
 		g_deye_last_rc, g_deye_send_count, (unsigned int)g_deye_logger_serial,
 		g_deye_fail_count);
