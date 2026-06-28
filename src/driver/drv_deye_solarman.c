@@ -11,6 +11,10 @@
 #include "lwip/inet.h"
 #include "lwip/ip_addr.h"
 #include "lwip/sockets.h"
+#ifndef WINDOWS
+#include "lwip/netdb.h"
+#include <lwip/dns.h>
+#endif
 #include "errno.h"
 
 #define DEYE_MODBUS_MAX_LEN 16
