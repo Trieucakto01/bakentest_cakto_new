@@ -418,7 +418,7 @@ static int Deye_Transaction(const byte *modbus, int modbusLen, int function, int
 	if (resolved == INADDR_NONE) {
 		struct hostent *he = gethostbyname(g_deye_ip);
 		if (he && he->h_addr_list && he->h_addr_list[0]) {
-			resolved = ((struct in_addr *)he->h_addr_list[0])->s_addr;
+			resolved = *(uint32_t *)he->h_addr_list[0];
 		}
 	}
 
@@ -892,8 +892,8 @@ static void Deye_RunDiscoverStep(void) {
 			g_deye_discover_host++;
 			struct hostent *he = gethostbyname(host);
 			if (he && he->h_addr_list && he->h_addr_list[0]) {
-				uint32_t a = ntohl(((struct in_addr *)he->h_addr_list[0])->s_addr);
-				snprintf(ip, sizeof(ip), "%u.%u.%u.%u", (a >> 24) & 0xFF, (a >> 16) & 0xFF, (a >> 8) & 0xFF, a & 0xFF);
+				uint8_t *a = (uint8_t *)he->h_addr_list[0];
+				snprintf(ip, sizeof(ip), "%u.%u.%u.%u", a[0], a[1], a[2], a[3]);
 				rc = Deye_CheckSerialAt(ip, 800);
 				if (rc == 0) {
 					snprintf(g_deye_ip, sizeof(g_deye_ip), "%s", ip);
