@@ -872,7 +872,7 @@ static void Deye_RunDiscoverStep(void) {
 		return;
 	}
 
-	for (attempts = 0; attempts < 8 && g_deye_discover_active; attempts++) {
+	for (attempts = 0; attempts < 4 && g_deye_discover_active; attempts++) {
 		if (g_deye_discover_try_saved_ip || g_deye_discover_saved_retry_seconds <= 0) {
 			g_deye_discover_try_saved_ip = 0;
 			g_deye_discover_saved_retry_seconds = 5;
@@ -886,9 +886,11 @@ static void Deye_RunDiscoverStep(void) {
 			}
 			continue;
 		}
-		if (g_deye_discover_host <= 2) {
+		if (g_deye_discover_host <= 3) {
 			char host[32];
 			if (g_deye_discover_host == 1) {
+				snprintf(host, sizeof(host), "%u", (unsigned int)g_deye_logger_serial);
+			} else if (g_deye_discover_host == 2) {
 				snprintf(host, sizeof(host), "WIFI-%u", (unsigned int)g_deye_logger_serial);
 			} else {
 				snprintf(host, sizeof(host), "AP_%u", (unsigned int)g_deye_logger_serial);
@@ -915,11 +917,11 @@ static void Deye_RunDiscoverStep(void) {
 			ADDLOG_ERROR(LOG_FEATURE_DRV, "DeyeSolarman DISCOVER done: no logger found on subnet");
 			return;
 		}
-		Deye_BuildSubnetIP(g_deye_discover_host - 2, ip, sizeof(ip));
+		Deye_BuildSubnetIP(g_deye_discover_host - 3, ip, sizeof(ip));
 		g_deye_discover_host++;
 		if (!strcmp(ip, HAL_GetMyIPString())) continue;
 
-		rc = Deye_CheckSerialAt(ip, 120);
+		rc = Deye_CheckSerialAt(ip, 250);
 		if (rc == 0) {
 			snprintf(g_deye_ip, sizeof(g_deye_ip), "%s", ip);
 			g_deye_discover_active = 0;
