@@ -387,6 +387,7 @@ static int Deye_Transaction(const byte *modbus, int modbusLen, int function, int
 	int rc;
 	struct sockaddr_in addr;
 	struct timeval tv;
+	uint32_t resolved;
 
 	g_deye_last_rx_len = 0;
 	Deye_LogHex("DeyeSolarman Modbus TX", modbus, modbusLen);
@@ -413,10 +414,18 @@ static int Deye_Transaction(const byte *modbus, int modbusLen, int function, int
 	setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
 	setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
 
+	resolved = inet_addr(g_deye_ip);
+	if (resolved == INADDR_NONE) {
+		struct hostent *he = gethostbyname(g_deye_ip);
+		if (he && he->h_addr_list && he->h_addr_list[0]) {
+			resolved = ((struct in_addr *)he->h_addr_list[0])->s_addr;
+		}
+	}
+
 	memset(&addr, 0, sizeof(addr));
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons((uint16_t)g_deye_port);
-	addr.sin_addr.s_addr = inet_addr(g_deye_ip);
+	addr.sin_addr.s_addr = resolved;
 
 	ADDLOG_INFO(LOG_FEATURE_DRV, "DeyeSolarman TCP: connecting to %s:%i timeout=1000ms", g_deye_ip, g_deye_port);
 	if (Deye_TCPConnectTimeoutMs(sock, &addr, 1000) < 0) {
@@ -873,12 +882,36 @@ static void Deye_RunDiscoverStep(void) {
 			}
 			continue;
 		}
-		if (g_deye_discover_host > 254) {
+		if (g_deye_discover_host <= 2) {
+			char host[32];
+			if (g_deye_discover_host == 1) {
+				snprintf(host, sizeof(host), "WIFI-%u", (unsigned int)g_deye_logger_serial);
+			} else {
+				snprintf(host, sizeof(host), "AP_%u", (unsigned int)g_deye_logger_serial);
+			}
+			g_deye_discover_host++;
+			struct hostent *he = gethostbyname(host);
+			if (he && he->h_addr_list && he->h_addr_list[0]) {
+				uint32_t a = ntohl(((struct in_addr *)he->h_addr_list[0])->s_addr);
+				snprintf(ip, sizeof(ip), "%u.%u.%u.%u", (a >> 24) & 0xFF, (a >> 16) & 0xFF, (a >> 8) & 0xFF, a & 0xFF);
+				rc = Deye_CheckSerialAt(ip, 800);
+				if (rc == 0) {
+					snprintf(g_deye_ip, sizeof(g_deye_ip), "%s", ip);
+					g_deye_discover_active = 0;
+					g_deye_discover_found = 1;
+					g_deye_ip_confirmed = 1;
+					ADDLOG_INFO(LOG_FEATURE_DRV, "DeyeSolarman DISCOVER found by hostname %s=%s", host, ip);
+					return;
+				}
+			}
+			continue;
+		}
+		if (g_deye_discover_host > 256) {
 			g_deye_discover_active = 0;
 			ADDLOG_ERROR(LOG_FEATURE_DRV, "DeyeSolarman DISCOVER done: no logger found on subnet");
 			return;
 		}
-		Deye_BuildSubnetIP(g_deye_discover_host, ip, sizeof(ip));
+		Deye_BuildSubnetIP(g_deye_discover_host - 2, ip, sizeof(ip));
 		g_deye_discover_host++;
 		if (!strcmp(ip, HAL_GetMyIPString())) continue;
 
