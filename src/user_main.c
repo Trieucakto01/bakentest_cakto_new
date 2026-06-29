@@ -1000,11 +1000,8 @@ void Main_OnEverySecond()
 #endif
 	if (g_openAP)
 	{
-		if (g_bHasWiFiConnected)
-		{
-			HAL_DisconnectFromWifi();
-			g_bHasWiFiConnected = 0;
-		}
+		HAL_DisconnectFromWifi();
+		g_bHasWiFiConnected = 0;
 		g_openAP--;
 		if (0 == g_openAP)
 		{
@@ -1042,7 +1039,7 @@ void Main_OnEverySecond()
 		}
 
 	}
-	if (g_connectToWiFi)
+	if (g_connectToWiFi && !g_openAP && !g_bOpenAccessPointMode)
 	{
 		g_connectToWiFi--;
 		if (0 == g_connectToWiFi && g_bHasWiFiConnected == 0)
