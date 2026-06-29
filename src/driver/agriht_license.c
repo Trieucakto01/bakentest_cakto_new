@@ -61,6 +61,12 @@ static commandResult_t CMD_GetFlashUID(const void* context, const char* cmd, con
 	unsigned int ret = flash_ctrl(CMD_FLASH_GET_UID, &param);
 	ADDLOG_INFO(LOG_FEATURE_GENERAL, "Flash UID ret: %u, uid: %02X%02X%02X%02X", ret, uid[0], uid[1], uid[2], uid[3]);
 	ADDLOG_INFO(LOG_FEATURE_GENERAL, "UID[4-7]: %02X%02X%02X%02X", uid[4], uid[5], uid[6], uid[7]);
+	
+	extern int wifi_get_mac_address_from_efuse(uint8_t *mac);
+	uint8_t emac[6] = {0};
+	int eret = wifi_get_mac_address_from_efuse(emac);
+	ADDLOG_INFO(LOG_FEATURE_GENERAL, "eFuse ret: %d, MAC: %02X:%02X:%02X:%02X:%02X:%02X", eret, emac[0], emac[1], emac[2], emac[3], emac[4], emac[5]);
+	
 	return CMD_RES_OK;
 }
 #endif
