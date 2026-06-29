@@ -50,9 +50,24 @@ typedef struct {
     unsigned int addr;
     unsigned int len;
 } temp_flash_otp_t;
+
+static commandResult_t CMD_GetFlashUID(const void* context, const char* cmd, const char* args, int cmdFlags) {
+	unsigned char uid[16] = {0};
+	temp_flash_otp_t param;
+	param.buf = uid;
+	param.addr = 0;
+	param.len = 16;
+	unsigned int ret = flash_ctrl(CMD_FLASH_GET_UID, &param);
+	ADDLOG_INFO(LOG_FEATURE_GENERAL, "Flash UID ret: %u, uid: %02X%02X%02X%02X", ret, uid[0], uid[1], uid[2], uid[3]);
+	ADDLOG_INFO(LOG_FEATURE_GENERAL, "UID[4-7]: %02X%02X%02X%02X", uid[4], uid[5], uid[6], uid[7]);
+	return CMD_RES_OK;
+}
 #endif
 
 void AgriHTLicense_Init(void) {
+#if defined(PLATFORM_BK7231T) || defined(PLATFORM_BK7231N) || defined(PLATFORM_BK7238) || defined(PLATFORM_BK7252) || defined(WINDOWS)
+	CMD_RegisterCommand("GetFlashUID", CMD_GetFlashUID, NULL);
+#endif
 	byte mac[6];
 	int uid_valid = 0;
 	uint8_t uid[16] = {0};
