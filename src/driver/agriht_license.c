@@ -84,14 +84,30 @@ void AgriHTLicense_Init(void) {
 	param.buf = uid;
 	param.addr = 0;
 	param.len = 16;
-	unsigned int ret = flash_ctrl(CMD_FLASH_GET_UID, &param);
-	ADDLOG_INFO(LOG_FEATURE_GENERAL, "Flash UID ret: %u, uid: %02X%02X%02X%02X", ret, uid[0], uid[1], uid[2], uid[3]);
-	if (ret == 16) {
+	if (flash_ctrl(CMD_FLASH_GET_UID, &param) == 16) {
 		int i;
 		for (i = 0; i < 16; i++) {
 			if (uid[i] != 0x00 && uid[i] != 0xFF) {
 				uid_valid = 1;
 				break;
+			}
+		}
+	}
+	
+	if (!uid_valid) {
+		extern int wifi_get_mac_address_from_efuse(uint8_t *mac);
+		uint8_t emac[6] = {0};
+		if (wifi_get_mac_address_from_efuse(emac) > 0) {
+			int i;
+			for (i = 0; i < 6; i++) {
+				if (emac[i] != 0x00 && emac[i] != 0xFF) {
+					uid_valid = 1;
+					break;
+				}
+			}
+			if (uid_valid) {
+				memcpy(uid, emac, 6);
+				memset(uid + 6, 0, 10);
 			}
 		}
 	}
