@@ -1379,18 +1379,18 @@ void DeyeSolarman_Init(void) {
 	int pinsChanged = 0;
 	AgriHTLicense_Init();
 	Deye_SetProductNameFromSN();
-	if (PIN_GetPinRoleForPinIndex(24) == IOR_None) {
-		PIN_SetPinRoleForPinIndex(24, IOR_LED_WIFI_n);
+	if (PIN_GetPinRoleForPinIndex(6) == IOR_None) {
+		PIN_SetPinRoleForPinIndex(6, IOR_LED_WIFI_n);
 		pinsChanged = 1;
 	}
-	if (PIN_GetPinRoleForPinIndex(26) == IOR_None) {
-		PIN_SetPinRoleForPinIndex(26, IOR_Button);
-		PIN_SetPinChannelForPinIndex(26, CHANNEL_MAX - 1);
+	if (PIN_GetPinRoleForPinIndex(8) == IOR_None) {
+		PIN_SetPinRoleForPinIndex(8, IOR_Button);
+		PIN_SetPinChannelForPinIndex(8, CHANNEL_MAX - 1);
 		pinsChanged = 1;
 	}
 	if (pinsChanged) {
 		CFG_Save_IfThereArePendingChanges();
-		ADDLOG_INFO(LOG_FEATURE_DRV, "DeyeSolarman PM01 pins configured: P24=WifiLED_n P26=Btn");
+		ADDLOG_INFO(LOG_FEATURE_DRV, "DeyeSolarman PM01 pins configured: P6=WifiLED_n P8=Btn");
 	}
 	CMD_RegisterCommand("Deye", Deye_CMD_Main, NULL);
 	CMD_RegisterCommand("DeyeSetup", Deye_CMD_Setup, NULL);
