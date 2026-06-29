@@ -1,6 +1,7 @@
 #include "../hal/hal_wifi.h"
 #include "../new_common.h"
 #include "../logging/logging.h"
+#include "../cmnds/cmd_public.h"
 #include "agriht_license.h"
 
 /* Keep synchronized with tools/generate_license.py in the private repo. */
