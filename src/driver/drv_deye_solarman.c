@@ -888,8 +888,9 @@ static void Deye_RunDiscoverStep(void) {
 		}
 
 		if (g_deye_discover_host > 256) {
-			g_deye_discover_active = 0;
-			ADDLOG_ERROR(LOG_FEATURE_DRV, "DeyeSolarman DISCOVER done: no logger found on subnet");
+			g_deye_discover_host = 1;
+			g_deye_discover_seconds_until_next = 30;
+			ADDLOG_ERROR(LOG_FEATURE_DRV, "DeyeSolarman DISCOVER done: no logger found on subnet, retrying in 30s");
 			return;
 		}
 		Deye_BuildSubnetIP(g_deye_discover_host, ip, sizeof(ip));
@@ -1454,7 +1455,9 @@ void DeyeSolarman_RunEverySecond(void) {
 			g_deye_discover_seconds_until_next--;
 		} else {
 			Deye_RunDiscoverStep();
-			g_deye_discover_seconds_until_next = 1;
+			if (g_deye_discover_seconds_until_next <= 0) {
+				g_deye_discover_seconds_until_next = 1;
+			}
 		}
 	}
 	if (!g_deye_fixed_enabled && !g_deye_auto_enabled) return;
