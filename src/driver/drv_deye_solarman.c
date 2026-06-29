@@ -1392,6 +1392,7 @@ void DeyeSolarman_Init(void) {
 		CFG_Save_IfThereArePendingChanges();
 		ADDLOG_INFO(LOG_FEATURE_DRV, "DeyeSolarman PM01 pins configured: P6=WifiLED_n P8=Btn");
 	}
+	CMD_ExecuteCommand("addEventHandler OnHold 8 OpenAP", 0);
 	CMD_RegisterCommand("Deye", Deye_CMD_Main, NULL);
 	CMD_RegisterCommand("DeyeSetup", Deye_CMD_Setup, NULL);
 	CMD_RegisterCommand("DeyeSave", Deye_CMD_Save, NULL);
